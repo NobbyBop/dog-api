@@ -40,6 +40,9 @@
     },
     "/dogs": {
       "get": {
+        "tags": [
+          "Dogs"
+        ],
         "summary": "List all dogs",
         "description": "Retrieve a paginated list of dogs with optional filtering",
         "parameters": [
@@ -94,7 +97,10 @@
           {
             "schema": {
               "type": "string",
-              "enum": ["male", "female"]
+              "enum": [
+                "male",
+                "female"
+              ]
             },
             "required": false,
             "name": "gender",
@@ -103,7 +109,12 @@
           {
             "schema": {
               "type": "string",
-              "enum": ["small", "medium", "large", "extra-large"]
+              "enum": [
+                "small",
+                "medium",
+                "large",
+                "extra-large"
+              ]
             },
             "required": false,
             "name": "size",
@@ -182,7 +193,10 @@
                           },
                           "gender": {
                             "type": "string",
-                            "enum": ["male", "female"]
+                            "enum": [
+                              "male",
+                              "female"
+                            ]
                           },
                           "color": {
                             "type": "string",
@@ -191,7 +205,12 @@
                           },
                           "size": {
                             "type": "string",
-                            "enum": ["small", "medium", "large", "extra-large"]
+                            "enum": [
+                              "small",
+                              "medium",
+                              "large",
+                              "extra-large"
+                            ]
                           },
                           "temperament": {
                             "type": "array",
@@ -270,10 +289,16 @@
                           "minimum": 0
                         }
                       },
-                      "required": ["total", "totalPages"]
+                      "required": [
+                        "total",
+                        "totalPages"
+                      ]
                     }
                   },
-                  "required": ["data", "pagination"]
+                  "required": [
+                    "data",
+                    "pagination"
+                  ]
                 }
               }
             }
@@ -281,6 +306,9 @@
         }
       },
       "post": {
+        "tags": [
+          "Dogs"
+        ],
         "summary": "Create a new dog",
         "description": "Add a new dog to the database",
         "requestBody": {
@@ -312,7 +340,10 @@
                   },
                   "gender": {
                     "type": "string",
-                    "enum": ["male", "female"]
+                    "enum": [
+                      "male",
+                      "female"
+                    ]
                   },
                   "color": {
                     "type": "string",
@@ -321,7 +352,12 @@
                   },
                   "size": {
                     "type": "string",
-                    "enum": ["small", "medium", "large", "extra-large"]
+                    "enum": [
+                      "small",
+                      "medium",
+                      "large",
+                      "extra-large"
+                    ]
                   },
                   "temperament": {
                     "type": "array",
@@ -401,7 +437,10 @@
                     },
                     "gender": {
                       "type": "string",
-                      "enum": ["male", "female"]
+                      "enum": [
+                        "male",
+                        "female"
+                      ]
                     },
                     "color": {
                       "type": "string",
@@ -410,7 +449,12 @@
                     },
                     "size": {
                       "type": "string",
-                      "enum": ["small", "medium", "large", "extra-large"]
+                      "enum": [
+                        "small",
+                        "medium",
+                        "large",
+                        "extra-large"
+                      ]
                     },
                     "temperament": {
                       "type": "array",
@@ -483,7 +527,10 @@
                       "nullable": true
                     }
                   },
-                  "required": ["error", "message"]
+                  "required": [
+                    "error",
+                    "message"
+                  ]
                 }
               }
             }
@@ -493,6 +540,9 @@
     },
     "/dogs/{id}": {
       "get": {
+        "tags": [
+          "Dogs"
+        ],
         "summary": "Get dog by ID",
         "description": "Retrieve a specific dog by its ID",
         "parameters": [
@@ -541,7 +591,10 @@
                     },
                     "gender": {
                       "type": "string",
-                      "enum": ["male", "female"]
+                      "enum": [
+                        "male",
+                        "female"
+                      ]
                     },
                     "color": {
                       "type": "string",
@@ -550,7 +603,12 @@
                     },
                     "size": {
                       "type": "string",
-                      "enum": ["small", "medium", "large", "extra-large"]
+                      "enum": [
+                        "small",
+                        "medium",
+                        "large",
+                        "extra-large"
+                      ]
                     },
                     "temperament": {
                       "type": "array",
@@ -623,7 +681,10 @@
                       "nullable": true
                     }
                   },
-                  "required": ["error", "message"]
+                  "required": [
+                    "error",
+                    "message"
+                  ]
                 }
               }
             }
@@ -631,6 +692,9 @@
         }
       },
       "put": {
+        "tags": [
+          "Dogs"
+        ],
         "summary": "Update dog",
         "description": "Update an existing dog's information",
         "parameters": [
@@ -673,7 +737,10 @@
                   },
                   "gender": {
                     "type": "string",
-                    "enum": ["male", "female"]
+                    "enum": [
+                      "male",
+                      "female"
+                    ]
                   },
                   "color": {
                     "type": "string",
@@ -682,7 +749,12 @@
                   },
                   "size": {
                     "type": "string",
-                    "enum": ["small", "medium", "large", "extra-large"]
+                    "enum": [
+                      "small",
+                      "medium",
+                      "large",
+                      "extra-large"
+                    ]
                   },
                   "temperament": {
                     "type": "array",
@@ -749,7 +821,10 @@
                     },
                     "gender": {
                       "type": "string",
-                      "enum": ["male", "female"]
+                      "enum": [
+                        "male",
+                        "female"
+                      ]
                     },
                     "color": {
                       "type": "string",
@@ -758,7 +833,12 @@
                     },
                     "size": {
                       "type": "string",
-                      "enum": ["small", "medium", "large", "extra-large"]
+                      "enum": [
+                        "small",
+                        "medium",
+                        "large",
+                        "extra-large"
+                      ]
                     },
                     "temperament": {
                       "type": "array",
@@ -831,7 +911,10 @@
                       "nullable": true
                     }
                   },
-                  "required": ["error", "message"]
+                  "required": [
+                    "error",
+                    "message"
+                  ]
                 }
               }
             }
@@ -839,6 +922,9 @@
         }
       },
       "delete": {
+        "tags": [
+          "Dogs"
+        ],
         "summary": "Delete dog",
         "description": "Remove a dog from the database",
         "parameters": [
@@ -873,7 +959,10 @@
                       "nullable": true
                     }
                   },
-                  "required": ["error", "message"]
+                  "required": [
+                    "error",
+                    "message"
+                  ]
                 }
               }
             }
@@ -883,6 +972,9 @@
     },
     "/dogs/{id}/photos": {
       "get": {
+        "tags": [
+          "Dogs"
+        ],
         "summary": "Get dog photos",
         "description": "Get all photos for a specific dog",
         "parameters": [
@@ -916,7 +1008,10 @@
                       }
                     }
                   },
-                  "required": ["dogId", "photos"]
+                  "required": [
+                    "dogId",
+                    "photos"
+                  ]
                 }
               }
             }
@@ -938,7 +1033,10 @@
                       "nullable": true
                     }
                   },
-                  "required": ["error", "message"]
+                  "required": [
+                    "error",
+                    "message"
+                  ]
                 }
               }
             }
@@ -948,6 +1046,9 @@
     },
     "/broods": {
       "get": {
+        "tags": [
+          "Broods"
+        ],
         "summary": "List all dog broods",
         "description": "Retrieve a list of all available dog broods with their characteristics",
         "parameters": [
@@ -972,7 +1073,12 @@
           {
             "schema": {
               "type": "string",
-              "enum": ["small", "medium", "large", "extra-large"]
+              "enum": [
+                "small",
+                "medium",
+                "large",
+                "extra-large"
+              ]
             },
             "required": false,
             "name": "size",
@@ -981,7 +1087,12 @@
           {
             "schema": {
               "type": "string",
-              "enum": ["low", "moderate", "high", "very-high"]
+              "enum": [
+                "low",
+                "moderate",
+                "high",
+                "very-high"
+              ]
             },
             "required": false,
             "name": "exerciseNeeds",
@@ -1045,7 +1156,12 @@
                       },
                       "size": {
                         "type": "string",
-                        "enum": ["small", "medium", "large", "extra-large"]
+                        "enum": [
+                          "small",
+                          "medium",
+                          "large",
+                          "extra-large"
+                        ]
                       },
                       "lifeSpan": {
                         "type": "object",
@@ -1061,7 +1177,10 @@
                             "maximum": 30
                           }
                         },
-                        "required": ["min", "max"]
+                        "required": [
+                          "min",
+                          "max"
+                        ]
                       },
                       "temperament": {
                         "type": "array",
@@ -1072,15 +1191,29 @@
                       },
                       "exerciseNeeds": {
                         "type": "string",
-                        "enum": ["low", "moderate", "high", "very-high"]
+                        "enum": [
+                          "low",
+                          "moderate",
+                          "high",
+                          "very-high"
+                        ]
                       },
                       "groomingNeeds": {
                         "type": "string",
-                        "enum": ["low", "moderate", "high"]
+                        "enum": [
+                          "low",
+                          "moderate",
+                          "high"
+                        ]
                       },
                       "trainability": {
                         "type": "string",
-                        "enum": ["low", "moderate", "high", "very-high"]
+                        "enum": [
+                          "low",
+                          "moderate",
+                          "high",
+                          "very-high"
+                        ]
                       },
                       "goodWithKids": {
                         "type": "boolean"
@@ -1132,6 +1265,9 @@
     },
     "/broods/{id}": {
       "get": {
+        "tags": [
+          "Broods"
+        ],
         "summary": "Get breed by ID",
         "description": "Retrieve detailed information about a specific dog breed",
         "parameters": [
@@ -1182,7 +1318,12 @@
                     },
                     "size": {
                       "type": "string",
-                      "enum": ["small", "medium", "large", "extra-large"]
+                      "enum": [
+                        "small",
+                        "medium",
+                        "large",
+                        "extra-large"
+                      ]
                     },
                     "lifeSpan": {
                       "type": "object",
@@ -1198,7 +1339,10 @@
                           "maximum": 30
                         }
                       },
-                      "required": ["min", "max"]
+                      "required": [
+                        "min",
+                        "max"
+                      ]
                     },
                     "temperament": {
                       "type": "array",
@@ -1209,15 +1353,29 @@
                     },
                     "exerciseNeeds": {
                       "type": "string",
-                      "enum": ["low", "moderate", "high", "very-high"]
+                      "enum": [
+                        "low",
+                        "moderate",
+                        "high",
+                        "very-high"
+                      ]
                     },
                     "groomingNeeds": {
                       "type": "string",
-                      "enum": ["low", "moderate", "high"]
+                      "enum": [
+                        "low",
+                        "moderate",
+                        "high"
+                      ]
                     },
                     "trainability": {
                       "type": "string",
-                      "enum": ["low", "moderate", "high", "very-high"]
+                      "enum": [
+                        "low",
+                        "moderate",
+                        "high",
+                        "very-high"
+                      ]
                     },
                     "goodWithKids": {
                       "type": "boolean"
@@ -1280,7 +1438,10 @@
                       "nullable": true
                     }
                   },
-                  "required": ["error", "message"]
+                  "required": [
+                    "error",
+                    "message"
+                  ]
                 }
               }
             }
@@ -1290,6 +1451,9 @@
     },
     "/broods/search": {
       "get": {
+        "tags": [
+          "Broods"
+        ],
         "summary": "Search broods by name",
         "description": "Search for dog broods by name or partial name match",
         "parameters": [
@@ -1355,7 +1519,12 @@
                       },
                       "size": {
                         "type": "string",
-                        "enum": ["small", "medium", "large", "extra-large"]
+                        "enum": [
+                          "small",
+                          "medium",
+                          "large",
+                          "extra-large"
+                        ]
                       },
                       "lifeSpan": {
                         "type": "object",
@@ -1371,7 +1540,10 @@
                             "maximum": 30
                           }
                         },
-                        "required": ["min", "max"]
+                        "required": [
+                          "min",
+                          "max"
+                        ]
                       },
                       "temperament": {
                         "type": "array",
@@ -1382,15 +1554,29 @@
                       },
                       "exerciseNeeds": {
                         "type": "string",
-                        "enum": ["low", "moderate", "high", "very-high"]
+                        "enum": [
+                          "low",
+                          "moderate",
+                          "high",
+                          "very-high"
+                        ]
                       },
                       "groomingNeeds": {
                         "type": "string",
-                        "enum": ["low", "moderate", "high"]
+                        "enum": [
+                          "low",
+                          "moderate",
+                          "high"
+                        ]
                       },
                       "trainability": {
                         "type": "string",
-                        "enum": ["low", "moderate", "high", "very-high"]
+                        "enum": [
+                          "low",
+                          "moderate",
+                          "high",
+                          "very-high"
+                        ]
                       },
                       "goodWithKids": {
                         "type": "boolean"
@@ -1442,6 +1628,9 @@
     },
     "/broods/groups": {
       "get": {
+        "tags": [
+          "Broods"
+        ],
         "summary": "Get all breed groups",
         "description": "Retrieve a list of all available dog breed groups",
         "responses": {
@@ -1468,11 +1657,17 @@
                             "minimum": 0
                           }
                         },
-                        "required": ["name", "description", "count"]
+                        "required": [
+                          "name",
+                          "description",
+                          "count"
+                        ]
                       }
                     }
                   },
-                  "required": ["groups"]
+                  "required": [
+                    "groups"
+                  ]
                 }
               }
             }
@@ -1482,13 +1677,21 @@
     },
     "/adoption/applications": {
       "get": {
+        "tags": [
+          "Adoption"
+        ],
         "summary": "List adoption applications",
         "description": "Retrieve all adoption applications with optional status filtering",
         "parameters": [
           {
             "schema": {
               "type": "string",
-              "enum": ["pending", "approved", "rejected", "withdrawn"]
+              "enum": [
+                "pending",
+                "approved",
+                "rejected",
+                "withdrawn"
+              ]
             },
             "required": false,
             "name": "status",
@@ -1586,7 +1789,12 @@
                                 "maxLength": 10
                               }
                             },
-                            "required": ["street", "city", "state", "zipCode"]
+                            "required": [
+                              "street",
+                              "city",
+                              "state",
+                              "zipCode"
+                            ]
                           },
                           "housingType": {
                             "type": "string",
@@ -1683,10 +1891,18 @@
                           "type": "integer"
                         }
                       },
-                      "required": ["page", "limit", "total", "totalPages"]
+                      "required": [
+                        "page",
+                        "limit",
+                        "total",
+                        "totalPages"
+                      ]
                     }
                   },
-                  "required": ["data", "pagination"]
+                  "required": [
+                    "data",
+                    "pagination"
+                  ]
                 }
               }
             }
@@ -1694,6 +1910,9 @@
         }
       },
       "post": {
+        "tags": [
+          "Adoption"
+        ],
         "summary": "Submit adoption application",
         "description": "Submit a new adoption application for a dog",
         "requestBody": {
@@ -1744,11 +1963,22 @@
                         "maxLength": 10
                       }
                     },
-                    "required": ["street", "city", "state", "zipCode"]
+                    "required": [
+                      "street",
+                      "city",
+                      "state",
+                      "zipCode"
+                    ]
                   },
                   "housingType": {
                     "type": "string",
-                    "enum": ["apartment", "house", "condo", "farm", "other"]
+                    "enum": [
+                      "apartment",
+                      "house",
+                      "condo",
+                      "farm",
+                      "other"
+                    ]
                   },
                   "hasYard": {
                     "type": "boolean"
@@ -1762,7 +1992,12 @@
                   },
                   "experience": {
                     "type": "string",
-                    "enum": ["none", "some", "experienced", "very-experienced"]
+                    "enum": [
+                      "none",
+                      "some",
+                      "experienced",
+                      "very-experienced"
+                    ]
                   },
                   "workSchedule": {
                     "type": "string",
@@ -1845,11 +2080,22 @@
                           "maxLength": 10
                         }
                       },
-                      "required": ["street", "city", "state", "zipCode"]
+                      "required": [
+                        "street",
+                        "city",
+                        "state",
+                        "zipCode"
+                      ]
                     },
                     "housingType": {
                       "type": "string",
-                      "enum": ["apartment", "house", "condo", "farm", "other"]
+                      "enum": [
+                        "apartment",
+                        "house",
+                        "condo",
+                        "farm",
+                        "other"
+                      ]
                     },
                     "hasYard": {
                       "type": "boolean"
@@ -1881,7 +2127,12 @@
                     },
                     "status": {
                       "type": "string",
-                      "enum": ["pending", "approved", "rejected", "withdrawn"]
+                      "enum": [
+                        "pending",
+                        "approved",
+                        "rejected",
+                        "withdrawn"
+                      ]
                     },
                     "notes": {
                       "type": "string",
@@ -1934,7 +2185,10 @@
                       "nullable": true
                     }
                   },
-                  "required": ["error", "message"]
+                  "required": [
+                    "error",
+                    "message"
+                  ]
                 }
               }
             }
@@ -1956,7 +2210,10 @@
                       "nullable": true
                     }
                   },
-                  "required": ["error", "message"]
+                  "required": [
+                    "error",
+                    "message"
+                  ]
                 }
               }
             }
@@ -1966,6 +2223,9 @@
     },
     "/adoption/applications/{id}": {
       "get": {
+        "tags": [
+          "Adoption"
+        ],
         "summary": "Get adoption application",
         "description": "Retrieve a specific adoption application by ID",
         "parameters": [
@@ -2033,11 +2293,22 @@
                           "maxLength": 10
                         }
                       },
-                      "required": ["street", "city", "state", "zipCode"]
+                      "required": [
+                        "street",
+                        "city",
+                        "state",
+                        "zipCode"
+                      ]
                     },
                     "housingType": {
                       "type": "string",
-                      "enum": ["apartment", "house", "condo", "farm", "other"]
+                      "enum": [
+                        "apartment",
+                        "house",
+                        "condo",
+                        "farm",
+                        "other"
+                      ]
                     },
                     "hasYard": {
                       "type": "boolean"
@@ -2069,7 +2340,12 @@
                     },
                     "status": {
                       "type": "string",
-                      "enum": ["pending", "approved", "rejected", "withdrawn"]
+                      "enum": [
+                        "pending",
+                        "approved",
+                        "rejected",
+                        "withdrawn"
+                      ]
                     },
                     "notes": {
                       "type": "string",
@@ -2122,7 +2398,10 @@
                       "nullable": true
                     }
                   },
-                  "required": ["error", "message"]
+                  "required": [
+                    "error",
+                    "message"
+                  ]
                 }
               }
             }
@@ -2132,6 +2411,9 @@
     },
     "/adoption/applications/{id}/status": {
       "put": {
+        "tags": [
+          "Adoption"
+        ],
         "summary": "Update application status",
         "description": "Update the status of an adoption application (approve, reject, etc.)",
         "parameters": [
@@ -2153,14 +2435,21 @@
                 "properties": {
                   "status": {
                     "type": "string",
-                    "enum": ["pending", "approved", "rejected", "withdrawn"]
+                    "enum": [
+                      "pending",
+                      "approved",
+                      "rejected",
+                      "withdrawn"
+                    ]
                   },
                   "notes": {
                     "type": "string",
                     "maxLength": 1000
                   }
                 },
-                "required": ["status"]
+                "required": [
+                  "status"
+                ]
               }
             }
           }
@@ -2219,11 +2508,22 @@
                           "maxLength": 10
                         }
                       },
-                      "required": ["street", "city", "state", "zipCode"]
+                      "required": [
+                        "street",
+                        "city",
+                        "state",
+                        "zipCode"
+                      ]
                     },
                     "housingType": {
                       "type": "string",
-                      "enum": ["apartment", "house", "condo", "farm", "other"]
+                      "enum": [
+                        "apartment",
+                        "house",
+                        "condo",
+                        "farm",
+                        "other"
+                      ]
                     },
                     "hasYard": {
                       "type": "boolean"
@@ -2255,7 +2555,12 @@
                     },
                     "status": {
                       "type": "string",
-                      "enum": ["pending", "approved", "rejected", "withdrawn"]
+                      "enum": [
+                        "pending",
+                        "approved",
+                        "rejected",
+                        "withdrawn"
+                      ]
                     },
                     "notes": {
                       "type": "string",
@@ -2308,7 +2613,10 @@
                       "nullable": true
                     }
                   },
-                  "required": ["error", "message"]
+                  "required": [
+                    "error",
+                    "message"
+                  ]
                 }
               }
             }
@@ -2318,6 +2626,9 @@
     },
     "/adoption/available": {
       "get": {
+        "tags": [
+          "Adoption"
+        ],
         "summary": "Get available dogs",
         "description": "Retrieve dogs that are available for adoption (no approved applications)",
         "parameters": [
@@ -2332,7 +2643,12 @@
           {
             "schema": {
               "type": "string",
-              "enum": ["small", "medium", "large", "extra-large"]
+              "enum": [
+                "small",
+                "medium",
+                "large",
+                "extra-large"
+              ]
             },
             "required": false,
             "name": "size",
@@ -2395,7 +2711,10 @@
                       },
                       "gender": {
                         "type": "string",
-                        "enum": ["male", "female"]
+                        "enum": [
+                          "male",
+                          "female"
+                        ]
                       },
                       "color": {
                         "type": "string",
@@ -2404,7 +2723,12 @@
                       },
                       "size": {
                         "type": "string",
-                        "enum": ["small", "medium", "large", "extra-large"]
+                        "enum": [
+                          "small",
+                          "medium",
+                          "large",
+                          "extra-large"
+                        ]
                       },
                       "temperament": {
                         "type": "array",
@@ -2466,6 +2790,9 @@
     },
     "/adoption/stats": {
       "get": {
+        "tags": [
+          "Adoption"
+        ],
         "summary": "Get adoption statistics",
         "description": "Retrieve statistics about adoptions and applications",
         "responses": {
@@ -2516,6 +2843,9 @@
     },
     "/health/records": {
       "get": {
+        "tags": [
+          "Health"
+        ],
         "summary": "List health records",
         "description": "Retrieve health records with optional filtering by dog or record type",
         "parameters": [
@@ -2668,7 +2998,11 @@
                                   "maxLength": 100
                                 }
                               },
-                              "required": ["name", "dosage", "frequency"]
+                              "required": [
+                                "name",
+                                "dosage",
+                                "frequency"
+                              ]
                             }
                           },
                           "cost": {
@@ -2729,10 +3063,18 @@
                           "type": "integer"
                         }
                       },
-                      "required": ["page", "limit", "total", "totalPages"]
+                      "required": [
+                        "page",
+                        "limit",
+                        "total",
+                        "totalPages"
+                      ]
                     }
                   },
-                  "required": ["data", "pagination"]
+                  "required": [
+                    "data",
+                    "pagination"
+                  ]
                 }
               }
             }
@@ -2740,6 +3082,9 @@
         }
       },
       "post": {
+        "tags": [
+          "Health"
+        ],
         "summary": "Create health record",
         "description": "Add a new health record for a dog",
         "requestBody": {
@@ -2804,7 +3149,11 @@
                           "maxLength": 100
                         }
                       },
-                      "required": ["name", "dosage", "frequency"]
+                      "required": [
+                        "name",
+                        "dosage",
+                        "frequency"
+                      ]
                     }
                   },
                   "cost": {
@@ -2908,7 +3257,11 @@
                             "maxLength": 100
                           }
                         },
-                        "required": ["name", "dosage", "frequency"]
+                        "required": [
+                          "name",
+                          "dosage",
+                          "frequency"
+                        ]
                       }
                     },
                     "cost": {
@@ -2972,7 +3325,10 @@
                       "nullable": true
                     }
                   },
-                  "required": ["error", "message"]
+                  "required": [
+                    "error",
+                    "message"
+                  ]
                 }
               }
             }
@@ -2994,7 +3350,10 @@
                       "nullable": true
                     }
                   },
-                  "required": ["error", "message"]
+                  "required": [
+                    "error",
+                    "message"
+                  ]
                 }
               }
             }
@@ -3004,6 +3363,9 @@
     },
     "/health/records/{id}": {
       "get": {
+        "tags": [
+          "Health"
+        ],
         "summary": "Get health record",
         "description": "Retrieve a specific health record by ID",
         "parameters": [
@@ -3085,7 +3447,11 @@
                             "maxLength": 100
                           }
                         },
-                        "required": ["name", "dosage", "frequency"]
+                        "required": [
+                          "name",
+                          "dosage",
+                          "frequency"
+                        ]
                       }
                     },
                     "cost": {
@@ -3149,7 +3515,10 @@
                       "nullable": true
                     }
                   },
-                  "required": ["error", "message"]
+                  "required": [
+                    "error",
+                    "message"
+                  ]
                 }
               }
             }
@@ -3159,6 +3528,9 @@
     },
     "/health/dogs/{dogId}/vaccination-history": {
       "get": {
+        "tags": [
+          "Health"
+        ],
         "summary": "Get dog vaccination history",
         "description": "Retrieve vaccination history for a specific dog",
         "parameters": [
@@ -3249,7 +3621,11 @@
                                   "maxLength": 100
                                 }
                               },
-                              "required": ["name", "dosage", "frequency"]
+                              "required": [
+                                "name",
+                                "dosage",
+                                "frequency"
+                              ]
                             }
                           },
                           "cost": {
@@ -3302,7 +3678,11 @@
                       "format": "date"
                     }
                   },
-                  "required": ["dogId", "vaccinations", "upToDate"]
+                  "required": [
+                    "dogId",
+                    "vaccinations",
+                    "upToDate"
+                  ]
                 }
               }
             }
@@ -3324,7 +3704,10 @@
                       "nullable": true
                     }
                   },
-                  "required": ["error", "message"]
+                  "required": [
+                    "error",
+                    "message"
+                  ]
                 }
               }
             }
@@ -3334,6 +3717,9 @@
     },
     "/health/veterinarians": {
       "get": {
+        "tags": [
+          "Health"
+        ],
         "summary": "Get veterinarians",
         "description": "Retrieve a list of veterinarians and their clinics from health records",
         "responses": {
@@ -3374,7 +3760,9 @@
                       }
                     }
                   },
-                  "required": ["veterinarians"]
+                  "required": [
+                    "veterinarians"
+                  ]
                 }
               }
             }
@@ -3384,6 +3772,9 @@
     },
     "/training/records": {
       "get": {
+        "tags": [
+          "Training"
+        ],
         "summary": "List training records",
         "description": "Retrieve training records with optional filtering",
         "parameters": [
@@ -3424,7 +3815,11 @@
           {
             "schema": {
               "type": "string",
-              "enum": ["in-progress", "completed", "discontinued"]
+              "enum": [
+                "in-progress",
+                "completed",
+                "discontinued"
+              ]
             },
             "required": false,
             "name": "status",
@@ -3433,7 +3828,12 @@
           {
             "schema": {
               "type": "string",
-              "enum": ["poor", "fair", "good", "excellent"]
+              "enum": [
+                "poor",
+                "fair",
+                "good",
+                "excellent"
+              ]
             },
             "required": false,
             "name": "progress",
@@ -3516,7 +3916,11 @@
                           },
                           "status": {
                             "type": "string",
-                            "enum": ["in-progress", "completed", "discontinued"]
+                            "enum": [
+                              "in-progress",
+                              "completed",
+                              "discontinued"
+                            ]
                           },
                           "skills": {
                             "type": "array",
@@ -3529,7 +3933,12 @@
                           },
                           "progress": {
                             "type": "string",
-                            "enum": ["poor", "fair", "good", "excellent"]
+                            "enum": [
+                              "poor",
+                              "fair",
+                              "good",
+                              "excellent"
+                            ]
                           },
                           "cost": {
                             "type": "number",
@@ -3586,10 +3995,18 @@
                           "type": "integer"
                         }
                       },
-                      "required": ["page", "limit", "total", "totalPages"]
+                      "required": [
+                        "page",
+                        "limit",
+                        "total",
+                        "totalPages"
+                      ]
                     }
                   },
-                  "required": ["data", "pagination"]
+                  "required": [
+                    "data",
+                    "pagination"
+                  ]
                 }
               }
             }
@@ -3597,6 +4014,9 @@
         }
       },
       "post": {
+        "tags": [
+          "Training"
+        ],
         "summary": "Create training record",
         "description": "Add a new training record for a dog",
         "requestBody": {
@@ -3641,7 +4061,11 @@
                   },
                   "status": {
                     "type": "string",
-                    "enum": ["in-progress", "completed", "discontinued"]
+                    "enum": [
+                      "in-progress",
+                      "completed",
+                      "discontinued"
+                    ]
                   },
                   "skills": {
                     "type": "array",
@@ -3654,7 +4078,12 @@
                   },
                   "progress": {
                     "type": "string",
-                    "enum": ["poor", "fair", "good", "excellent"]
+                    "enum": [
+                      "poor",
+                      "fair",
+                      "good",
+                      "excellent"
+                    ]
                   },
                   "cost": {
                     "type": "number",
@@ -3734,7 +4163,11 @@
                     },
                     "status": {
                       "type": "string",
-                      "enum": ["in-progress", "completed", "discontinued"]
+                      "enum": [
+                        "in-progress",
+                        "completed",
+                        "discontinued"
+                      ]
                     },
                     "skills": {
                       "type": "array",
@@ -3747,7 +4180,12 @@
                     },
                     "progress": {
                       "type": "string",
-                      "enum": ["poor", "fair", "good", "excellent"]
+                      "enum": [
+                        "poor",
+                        "fair",
+                        "good",
+                        "excellent"
+                      ]
                     },
                     "cost": {
                       "type": "number",
@@ -3807,7 +4245,10 @@
                       "nullable": true
                     }
                   },
-                  "required": ["error", "message"]
+                  "required": [
+                    "error",
+                    "message"
+                  ]
                 }
               }
             }
@@ -3829,7 +4270,10 @@
                       "nullable": true
                     }
                   },
-                  "required": ["error", "message"]
+                  "required": [
+                    "error",
+                    "message"
+                  ]
                 }
               }
             }
@@ -3839,6 +4283,9 @@
     },
     "/training/records/{id}": {
       "get": {
+        "tags": [
+          "Training"
+        ],
         "summary": "Get training record",
         "description": "Retrieve a specific training record by ID",
         "parameters": [
@@ -3900,7 +4347,11 @@
                     },
                     "status": {
                       "type": "string",
-                      "enum": ["in-progress", "completed", "discontinued"]
+                      "enum": [
+                        "in-progress",
+                        "completed",
+                        "discontinued"
+                      ]
                     },
                     "skills": {
                       "type": "array",
@@ -3913,7 +4364,12 @@
                     },
                     "progress": {
                       "type": "string",
-                      "enum": ["poor", "fair", "good", "excellent"]
+                      "enum": [
+                        "poor",
+                        "fair",
+                        "good",
+                        "excellent"
+                      ]
                     },
                     "cost": {
                       "type": "number",
@@ -3973,7 +4429,10 @@
                       "nullable": true
                     }
                   },
-                  "required": ["error", "message"]
+                  "required": [
+                    "error",
+                    "message"
+                  ]
                 }
               }
             }
@@ -3981,6 +4440,9 @@
         }
       },
       "put": {
+        "tags": [
+          "Training"
+        ],
         "summary": "Update training record",
         "description": "Update an existing training record",
         "parameters": [
@@ -4002,11 +4464,20 @@
                 "properties": {
                   "status": {
                     "type": "string",
-                    "enum": ["in-progress", "completed", "discontinued"]
+                    "enum": [
+                      "in-progress",
+                      "completed",
+                      "discontinued"
+                    ]
                   },
                   "progress": {
                     "type": "string",
-                    "enum": ["poor", "fair", "good", "excellent"]
+                    "enum": [
+                      "poor",
+                      "fair",
+                      "good",
+                      "excellent"
+                    ]
                   },
                   "endDate": {
                     "type": "string",
@@ -4086,7 +4557,11 @@
                     },
                     "status": {
                       "type": "string",
-                      "enum": ["in-progress", "completed", "discontinued"]
+                      "enum": [
+                        "in-progress",
+                        "completed",
+                        "discontinued"
+                      ]
                     },
                     "skills": {
                       "type": "array",
@@ -4099,7 +4574,12 @@
                     },
                     "progress": {
                       "type": "string",
-                      "enum": ["poor", "fair", "good", "excellent"]
+                      "enum": [
+                        "poor",
+                        "fair",
+                        "good",
+                        "excellent"
+                      ]
                     },
                     "cost": {
                       "type": "number",
@@ -4159,7 +4639,10 @@
                       "nullable": true
                     }
                   },
-                  "required": ["error", "message"]
+                  "required": [
+                    "error",
+                    "message"
+                  ]
                 }
               }
             }
@@ -4169,6 +4652,9 @@
     },
     "/training/dogs/{dogId}/progress": {
       "get": {
+        "tags": [
+          "Training"
+        ],
         "summary": "Get dog training progress",
         "description": "Retrieve all training records and progress for a specific dog",
         "parameters": [
@@ -4205,7 +4691,12 @@
                     },
                     "overallProgress": {
                       "type": "string",
-                      "enum": ["poor", "fair", "good", "excellent"]
+                      "enum": [
+                        "poor",
+                        "fair",
+                        "good",
+                        "excellent"
+                      ]
                     },
                     "skills": {
                       "type": "array",
@@ -4258,7 +4749,11 @@
                           },
                           "status": {
                             "type": "string",
-                            "enum": ["in-progress", "completed", "discontinued"]
+                            "enum": [
+                              "in-progress",
+                              "completed",
+                              "discontinued"
+                            ]
                           },
                           "skills": {
                             "type": "array",
@@ -4271,7 +4766,12 @@
                           },
                           "progress": {
                             "type": "string",
-                            "enum": ["poor", "fair", "good", "excellent"]
+                            "enum": [
+                              "poor",
+                              "fair",
+                              "good",
+                              "excellent"
+                            ]
                           },
                           "cost": {
                             "type": "number",
@@ -4343,7 +4843,10 @@
                       "nullable": true
                     }
                   },
-                  "required": ["error", "message"]
+                  "required": [
+                    "error",
+                    "message"
+                  ]
                 }
               }
             }
@@ -4353,6 +4856,9 @@
     },
     "/training/trainers": {
       "get": {
+        "tags": [
+          "Training"
+        ],
         "summary": "Get trainers",
         "description": "Retrieve a list of trainers and their specialties",
         "responses": {
@@ -4385,7 +4891,12 @@
                           },
                           "averageProgress": {
                             "type": "string",
-                            "enum": ["poor", "fair", "good", "excellent"]
+                            "enum": [
+                              "poor",
+                              "fair",
+                              "good",
+                              "excellent"
+                            ]
                           }
                         },
                         "required": [
@@ -4397,7 +4908,9 @@
                       }
                     }
                   },
-                  "required": ["trainers"]
+                  "required": [
+                    "trainers"
+                  ]
                 }
               }
             }
@@ -4406,6 +4919,6 @@
       }
     }
   },
-  "x-generated-at": "2025-08-21T14:52:59.570Z",
+  "x-generated-at": "2025-08-21T20:43:32.618Z",
   "x-generated-by": "dog-api-ci"
 }

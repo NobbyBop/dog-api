@@ -9,7 +9,7 @@ export const broodsRoutes = new OpenAPIHono();
 const listBroodsRoute = createRoute({
   method: "get",
   path: "/",
-  tags: ['Broods'],
+  tags: ["Broods"],
   summary: "List all dog broods",
   description:
     "Retrieve a list of all available dog broods with their characteristics",
@@ -84,7 +84,7 @@ broodsRoutes.openapi(listBroodsRoute, (c) => {
 const getBreedRoute = createRoute({
   method: "get",
   path: "/{id}",
-  tags: ['Broods'],
+  tags: ["Broods"],
   summary: "Get breed by ID",
   description: "Retrieve detailed information about a specific dog breed",
   request: {
@@ -133,7 +133,7 @@ broodsRoutes.openapi(getBreedRoute, (c) => {
 const searchBroodsRoute = createRoute({
   method: "get",
   path: "/search",
-  tags: ['Broods'],
+  tags: ["Broods"],
   summary: "Search broods by name",
   description: "Search for dog broods by name or partial name match",
   request: {
@@ -168,7 +168,7 @@ broodsRoutes.openapi(searchBroodsRoute, (c) => {
 const getBreedGroupsRoute = createRoute({
   method: "get",
   path: "/groups",
-  tags: ['Broods'],
+  tags: ["Broods"],
   summary: "Get all breed groups",
   description: "Retrieve a list of all available dog breed groups",
   responses: {
