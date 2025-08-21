@@ -70,7 +70,7 @@ async function generateSchemaDirectly() {
 
     // Import our route modules to get their schemas
     const { dogsRoutes } = await import("../src/routes/dogs");
-    const { broodsRoutes } = await import("../src/routes/broods");
+    const { breedsRoutes } = await import("../src/routes/breeds");
     const { adoptionRoutes } = await import("../src/routes/adoption");
     const { healthRoutes } = await import("../src/routes/health");
     const { trainingRoutes } = await import("../src/routes/training");
@@ -80,7 +80,7 @@ async function generateSchemaDirectly() {
 
     // Add all routes
     tempApp.route("/dogs", dogsRoutes);
-    tempApp.route("/broods", broodsRoutes);
+    tempApp.route("/breeds", breedsRoutes);
     tempApp.route("/adoption", adoptionRoutes);
     tempApp.route("/health", healthRoutes);
     tempApp.route("/training", trainingRoutes);
@@ -92,7 +92,7 @@ async function generateSchemaDirectly() {
         version: "1.0.0",
         title: "Dog API",
         description:
-          "A comprehensive API for managing dogs, broods, adoption, health records, and training data",
+          "A comprehensive API for managing dogs, breeds, adoption, health records, and training data",
       },
     });
 
