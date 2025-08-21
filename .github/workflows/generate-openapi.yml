@@ -1,0 +1,87 @@
+name: Generate OpenAPI Schema
+
+on:
+  push:
+    branches: [ main, master ]
+    paths:
+      - 'src/**'
+      - 'index.ts'
+      - 'package.json'
+  pull_request:
+    branches: [ main, master ]
+    paths:
+      - 'src/**'
+      - 'index.ts'
+      - 'package.json'
+
+jobs:
+  generate-openapi:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+      with:
+        token: ${{ secrets.GITHUB_TOKEN }}
+        fetch-depth: 0
+    
+    - name: Setup Bun
+      uses: oven-sh/setup-bun@v1
+      with:
+        bun-version: latest
+    
+    - name: Install dependencies
+      run: bun install
+    
+    - name: Generate OpenAPI schema
+      run: bun run scripts/generate-openapi-ci.ts
+    
+    - name: Check for changes
+      id: verify-changed-files
+      run: |
+        if [ -n "$(git status --porcelain)" ]; then
+          echo "changed=true" >> $GITHUB_OUTPUT
+        else
+          echo "changed=false" >> $GITHUB_OUTPUT
+        fi
+    
+    - name: Commit and push changes
+      if: steps.verify-changed-files.outputs.changed == 'true' && github.event_name == 'push'
+      run: |
+        git config --local user.email "action@github.com"
+        git config --local user.name "GitHub Action"
+        git add openapi.json
+        git commit -m "chore: update OpenAPI schema [skip ci]" || exit 0
+        git push
+    
+    - name: Upload OpenAPI schema as artifact
+      uses: actions/upload-artifact@v3
+      with:
+        name: openapi-schema
+        path: openapi.json
+        retention-days: 30
+    
+    - name: Comment PR with schema info
+      if: github.event_name == 'pull_request'
+      uses: actions/github-script@v6
+      with:
+        script: |
+          const fs = require('fs');
+          if (fs.existsSync('openapi.json')) {
+            const schema = JSON.parse(fs.readFileSync('openapi.json', 'utf8'));
+            const pathCount = Object.keys(schema.paths || {}).length;
+            
+            github.rest.issues.createComment({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              body: `🔄 **OpenAPI Schema Updated**
+              
+📊 **API Summary:**
+- Total endpoints: ${pathCount}
+- API version: ${schema.info?.version || 'unknown'}
+- Last updated: ${new Date().toISOString()}
+
+📄 The updated OpenAPI schema has been generated and is available as an artifact.`
+            });
+          }

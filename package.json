@@ -1,0 +1,26 @@
+{
+  "name": "dog-api",
+  "module": "index.ts",
+  "type": "module",
+  "private": true,
+  "scripts": {
+    "dev": "bun run --watch index.ts",
+    "start": "bun run index.ts",
+    "generate:openapi": "bun run scripts/generate-openapi.ts",
+    "generate:openapi:curl": "bun run start & sleep 3 && curl -s http://localhost:3000/openapi > openapi.json && pkill -f 'bun run index.ts'"
+  },
+  "dependencies": {
+    "@hono/swagger-ui": "^0.4.0",
+    "@hono/zod-openapi": "^0.16.0",
+    "hono": "^4.0.0",
+    "uuid": "^11.1.0",
+    "zod": "^3.23.0"
+  },
+  "devDependencies": {
+    "@types/bun": "latest",
+    "@types/uuid": "^10.0.0"
+  },
+  "peerDependencies": {
+    "typescript": "^5"
+  }
+}

@@ -1,0 +1,126 @@
+name: Generate OpenAPI Schema (Webhook)
+
+on:
+  repository_dispatch:
+    types: [generate-openapi]
+  workflow_dispatch:
+    inputs:
+      force_commit:
+        description: 'Force commit even if no changes detected'
+        required: false
+        default: 'false'
+        type: boolean
+
+jobs:
+  generate-openapi:
+    runs-on: ubuntu-latest
+    
+    outputs:
+      endpoint-count: ${{ steps.generate.outputs.endpoint-count }}
+      api-version: ${{ steps.generate.outputs.api-version }}
+      generated-at: ${{ steps.generate.outputs.generated-at }}
+      schema-url: ${{ steps.upload.outputs.artifact-url }}
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+      with:
+        token: ${{ secrets.GITHUB_TOKEN }}
+        fetch-depth: 0
+    
+    - name: Setup Bun
+      uses: oven-sh/setup-bun@v1
+      with:
+        bun-version: latest
+    
+    - name: Install dependencies
+      run: bun install
+    
+    - name: Generate OpenAPI schema
+      id: generate
+      run: bun run scripts/generate-openapi-ci.ts
+    
+    - name: Check for changes
+      id: verify-changed-files
+      run: |
+        if [ -n "$(git status --porcelain)" ]; then
+          echo "changed=true" >> $GITHUB_OUTPUT
+        else
+          echo "changed=false" >> $GITHUB_OUTPUT
+        fi
+    
+    - name: Commit and push changes
+      if: steps.verify-changed-files.outputs.changed == 'true' || github.event.inputs.force_commit == 'true'
+      run: |
+        git config --local user.email "action@github.com"
+        git config --local user.name "GitHub Action"
+        git add openapi.json
+        git commit -m "chore: update OpenAPI schema
+        
+        Generated at: ${{ steps.generate.outputs.generated-at }}
+        Endpoints: ${{ steps.generate.outputs.endpoint-count }}
+        API Version: ${{ steps.generate.outputs.api-version }}
+        
+        [skip ci]" || exit 0
+        git push
+    
+    - name: Upload OpenAPI schema as artifact
+      id: upload
+      uses: actions/upload-artifact@v3
+      with:
+        name: openapi-schema-${{ github.sha }}
+        path: openapi.json
+        retention-days: 90
+    
+    - name: Create release with schema
+      if: github.ref == 'refs/heads/main' || github.ref == 'refs/heads/master'
+      uses: actions/github-script@v6
+      with:
+        script: |
+          const fs = require('fs');
+          const path = require('path');
+          
+          if (fs.existsSync('openapi.json')) {
+            const schema = JSON.parse(fs.readFileSync('openapi.json', 'utf8'));
+            const timestamp = new Date().toISOString().replace(/[:.]/g, '-');
+            const tagName = `openapi-${timestamp}`;
+            
+            try {
+              await github.rest.repos.createRelease({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                tag_name: tagName,
+                name: `OpenAPI Schema ${schema.info?.version || 'latest'}`,
+                body: `🔄 **Automated OpenAPI Schema Release**
+                
+📊 **API Summary:**
+- Total endpoints: ${{ steps.generate.outputs.endpoint-count }}
+- API version: ${{ steps.generate.outputs.api-version }}
+- Generated at: ${{ steps.generate.outputs.generated-at }}
+- Commit: ${context.sha}
+
+📄 This release contains the latest OpenAPI schema generated from the current codebase.`,
+                draft: false,
+                prerelease: false
+              });
+              
+              console.log('Created release:', tagName);
+            } catch (error) {
+              console.log('Release creation failed (probably tag exists):', error.message);
+            }
+          }
+    
+    - name: Update repository description
+      if: steps.verify-changed-files.outputs.changed == 'true'
+      uses: actions/github-script@v6
+      with:
+        script: |
+          try {
+            await github.rest.repos.update({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              description: `🐕 Dog API - ${{ steps.generate.outputs.endpoint-count }} endpoints | Last updated: ${{ steps.generate.outputs.generated-at }}`
+            });
+          } catch (error) {
+            console.log('Could not update repository description:', error.message);
+          }

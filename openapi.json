@@ -1,0 +1,4843 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "version": "1.0.0",
+    "title": "Dog API",
+    "description": "A comprehensive API for managing dogs, breeds, adoption, health records, and training data"
+  },
+  "components": {
+    "schemas": {},
+    "parameters": {}
+  },
+  "paths": {
+    "/": {
+      "get": {
+        "summary": "Welcome to Dog API",
+        "responses": {
+          "200": {
+            "description": "Welcome message",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    },
+                    "version": {
+                      "type": "string"
+                    },
+                    "docs": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/dogs": {
+      "get": {
+        "summary": "List all dogs",
+        "description": "Retrieve a paginated list of dogs with optional filtering",
+        "parameters": [
+          {
+            "schema": {
+              "type": "string"
+            },
+            "required": false,
+            "name": "breed",
+            "in": "query"
+          },
+          {
+            "schema": {
+              "type": "integer",
+              "nullable": true,
+              "minimum": 0
+            },
+            "required": false,
+            "name": "age_min",
+            "in": "query"
+          },
+          {
+            "schema": {
+              "type": "integer",
+              "nullable": true,
+              "minimum": 0
+            },
+            "required": false,
+            "name": "age_max",
+            "in": "query"
+          },
+          {
+            "schema": {
+              "type": "number",
+              "nullable": true,
+              "minimum": 0
+            },
+            "required": false,
+            "name": "weight_min",
+            "in": "query"
+          },
+          {
+            "schema": {
+              "type": "number",
+              "nullable": true,
+              "minimum": 0
+            },
+            "required": false,
+            "name": "weight_max",
+            "in": "query"
+          },
+          {
+            "schema": {
+              "type": "string",
+              "enum": [
+                "male",
+                "female"
+              ]
+            },
+            "required": false,
+            "name": "gender",
+            "in": "query"
+          },
+          {
+            "schema": {
+              "type": "string",
+              "enum": [
+                "small",
+                "medium",
+                "large",
+                "extra-large"
+              ]
+            },
+            "required": false,
+            "name": "size",
+            "in": "query"
+          },
+          {
+            "schema": {
+              "type": "boolean",
+              "nullable": true
+            },
+            "required": false,
+            "name": "isNeutered",
+            "in": "query"
+          },
+          {
+            "schema": {
+              "type": "integer",
+              "minimum": 0,
+              "exclusiveMinimum": true,
+              "default": 1
+            },
+            "required": false,
+            "name": "page",
+            "in": "query"
+          },
+          {
+            "schema": {
+              "type": "integer",
+              "minimum": 0,
+              "exclusiveMinimum": true,
+              "maximum": 100,
+              "default": 10
+            },
+            "required": false,
+            "name": "limit",
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "List of dogs with pagination",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "data": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "id": {
+                            "type": "string",
+                            "format": "uuid"
+                          },
+                          "name": {
+                            "type": "string",
+                            "minLength": 1,
+                            "maxLength": 100
+                          },
+                          "breed": {
+                            "type": "string",
+                            "minLength": 1,
+                            "maxLength": 50
+                          },
+                          "age": {
+                            "type": "integer",
+                            "minimum": 0,
+                            "maximum": 30
+                          },
+                          "weight": {
+                            "type": "number",
+                            "minimum": 0,
+                            "exclusiveMinimum": true,
+                            "maximum": 200
+                          },
+                          "gender": {
+                            "type": "string",
+                            "enum": [
+                              "male",
+                              "female"
+                            ]
+                          },
+                          "color": {
+                            "type": "string",
+                            "minLength": 1,
+                            "maxLength": 50
+                          },
+                          "size": {
+                            "type": "string",
+                            "enum": [
+                              "small",
+                              "medium",
+                              "large",
+                              "extra-large"
+                            ]
+                          },
+                          "temperament": {
+                            "type": "array",
+                            "items": {
+                              "type": "string"
+                            },
+                            "maxItems": 10
+                          },
+                          "isNeutered": {
+                            "type": "boolean"
+                          },
+                          "microchipId": {
+                            "type": "string"
+                          },
+                          "photos": {
+                            "type": "array",
+                            "items": {
+                              "type": "string",
+                              "format": "uri"
+                            },
+                            "maxItems": 10
+                          },
+                          "description": {
+                            "type": "string",
+                            "maxLength": 1000
+                          },
+                          "createdAt": {
+                            "type": "string",
+                            "format": "date-time"
+                          },
+                          "updatedAt": {
+                            "type": "string",
+                            "format": "date-time"
+                          }
+                        },
+                        "required": [
+                          "id",
+                          "name",
+                          "breed",
+                          "age",
+                          "weight",
+                          "gender",
+                          "color",
+                          "size",
+                          "temperament",
+                          "isNeutered",
+                          "photos",
+                          "description",
+                          "createdAt",
+                          "updatedAt"
+                        ]
+                      }
+                    },
+                    "pagination": {
+                      "type": "object",
+                      "properties": {
+                        "page": {
+                          "type": "integer",
+                          "minimum": 0,
+                          "exclusiveMinimum": true,
+                          "default": 1
+                        },
+                        "limit": {
+                          "type": "integer",
+                          "minimum": 0,
+                          "exclusiveMinimum": true,
+                          "maximum": 100,
+                          "default": 10
+                        },
+                        "total": {
+                          "type": "integer",
+                          "minimum": 0
+                        },
+                        "totalPages": {
+                          "type": "integer",
+                          "minimum": 0
+                        }
+                      },
+                      "required": [
+                        "total",
+                        "totalPages"
+                      ]
+                    }
+                  },
+                  "required": [
+                    "data",
+                    "pagination"
+                  ]
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "summary": "Create a new dog",
+        "description": "Add a new dog to the database",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string",
+                    "minLength": 1,
+                    "maxLength": 100
+                  },
+                  "breed": {
+                    "type": "string",
+                    "minLength": 1,
+                    "maxLength": 50
+                  },
+                  "age": {
+                    "type": "integer",
+                    "minimum": 0,
+                    "maximum": 30
+                  },
+                  "weight": {
+                    "type": "number",
+                    "minimum": 0,
+                    "exclusiveMinimum": true,
+                    "maximum": 200
+                  },
+                  "gender": {
+                    "type": "string",
+                    "enum": [
+                      "male",
+                      "female"
+                    ]
+                  },
+                  "color": {
+                    "type": "string",
+                    "minLength": 1,
+                    "maxLength": 50
+                  },
+                  "size": {
+                    "type": "string",
+                    "enum": [
+                      "small",
+                      "medium",
+                      "large",
+                      "extra-large"
+                    ]
+                  },
+                  "temperament": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    },
+                    "maxItems": 10
+                  },
+                  "isNeutered": {
+                    "type": "boolean"
+                  },
+                  "microchipId": {
+                    "type": "string"
+                  },
+                  "photos": {
+                    "type": "array",
+                    "items": {
+                      "type": "string",
+                      "format": "uri"
+                    },
+                    "maxItems": 10
+                  },
+                  "description": {
+                    "type": "string",
+                    "maxLength": 1000
+                  }
+                },
+                "required": [
+                  "name",
+                  "breed",
+                  "age",
+                  "weight",
+                  "gender",
+                  "color",
+                  "size",
+                  "temperament",
+                  "isNeutered",
+                  "photos",
+                  "description"
+                ]
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Dog created successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "string",
+                      "format": "uuid"
+                    },
+                    "name": {
+                      "type": "string",
+                      "minLength": 1,
+                      "maxLength": 100
+                    },
+                    "breed": {
+                      "type": "string",
+                      "minLength": 1,
+                      "maxLength": 50
+                    },
+                    "age": {
+                      "type": "integer",
+                      "minimum": 0,
+                      "maximum": 30
+                    },
+                    "weight": {
+                      "type": "number",
+                      "minimum": 0,
+                      "exclusiveMinimum": true,
+                      "maximum": 200
+                    },
+                    "gender": {
+                      "type": "string",
+                      "enum": [
+                        "male",
+                        "female"
+                      ]
+                    },
+                    "color": {
+                      "type": "string",
+                      "minLength": 1,
+                      "maxLength": 50
+                    },
+                    "size": {
+                      "type": "string",
+                      "enum": [
+                        "small",
+                        "medium",
+                        "large",
+                        "extra-large"
+                      ]
+                    },
+                    "temperament": {
+                      "type": "array",
+                      "items": {
+                        "type": "string"
+                      },
+                      "maxItems": 10
+                    },
+                    "isNeutered": {
+                      "type": "boolean"
+                    },
+                    "microchipId": {
+                      "type": "string"
+                    },
+                    "photos": {
+                      "type": "array",
+                      "items": {
+                        "type": "string",
+                        "format": "uri"
+                      },
+                      "maxItems": 10
+                    },
+                    "description": {
+                      "type": "string",
+                      "maxLength": 1000
+                    },
+                    "createdAt": {
+                      "type": "string",
+                      "format": "date-time"
+                    },
+                    "updatedAt": {
+                      "type": "string",
+                      "format": "date-time"
+                    }
+                  },
+                  "required": [
+                    "id",
+                    "name",
+                    "breed",
+                    "age",
+                    "weight",
+                    "gender",
+                    "color",
+                    "size",
+                    "temperament",
+                    "isNeutered",
+                    "photos",
+                    "description",
+                    "createdAt",
+                    "updatedAt"
+                  ]
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid input data",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string"
+                    },
+                    "message": {
+                      "type": "string"
+                    },
+                    "details": {
+                      "nullable": true
+                    }
+                  },
+                  "required": [
+                    "error",
+                    "message"
+                  ]
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/dogs/{id}": {
+      "get": {
+        "summary": "Get dog by ID",
+        "description": "Retrieve a specific dog by its ID",
+        "parameters": [
+          {
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            },
+            "required": true,
+            "name": "id",
+            "in": "path"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Dog details",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "string",
+                      "format": "uuid"
+                    },
+                    "name": {
+                      "type": "string",
+                      "minLength": 1,
+                      "maxLength": 100
+                    },
+                    "breed": {
+                      "type": "string",
+                      "minLength": 1,
+                      "maxLength": 50
+                    },
+                    "age": {
+                      "type": "integer",
+                      "minimum": 0,
+                      "maximum": 30
+                    },
+                    "weight": {
+                      "type": "number",
+                      "minimum": 0,
+                      "exclusiveMinimum": true,
+                      "maximum": 200
+                    },
+                    "gender": {
+                      "type": "string",
+                      "enum": [
+                        "male",
+                        "female"
+                      ]
+                    },
+                    "color": {
+                      "type": "string",
+                      "minLength": 1,
+                      "maxLength": 50
+                    },
+                    "size": {
+                      "type": "string",
+                      "enum": [
+                        "small",
+                        "medium",
+                        "large",
+                        "extra-large"
+                      ]
+                    },
+                    "temperament": {
+                      "type": "array",
+                      "items": {
+                        "type": "string"
+                      },
+                      "maxItems": 10
+                    },
+                    "isNeutered": {
+                      "type": "boolean"
+                    },
+                    "microchipId": {
+                      "type": "string"
+                    },
+                    "photos": {
+                      "type": "array",
+                      "items": {
+                        "type": "string",
+                        "format": "uri"
+                      },
+                      "maxItems": 10
+                    },
+                    "description": {
+                      "type": "string",
+                      "maxLength": 1000
+                    },
+                    "createdAt": {
+                      "type": "string",
+                      "format": "date-time"
+                    },
+                    "updatedAt": {
+                      "type": "string",
+                      "format": "date-time"
+                    }
+                  },
+                  "required": [
+                    "id",
+                    "name",
+                    "breed",
+                    "age",
+                    "weight",
+                    "gender",
+                    "color",
+                    "size",
+                    "temperament",
+                    "isNeutered",
+                    "photos",
+                    "description",
+                    "createdAt",
+                    "updatedAt"
+                  ]
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Dog not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string"
+                    },
+                    "message": {
+                      "type": "string"
+                    },
+                    "details": {
+                      "nullable": true
+                    }
+                  },
+                  "required": [
+                    "error",
+                    "message"
+                  ]
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "summary": "Update dog",
+        "description": "Update an existing dog's information",
+        "parameters": [
+          {
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            },
+            "required": true,
+            "name": "id",
+            "in": "path"
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string",
+                    "minLength": 1,
+                    "maxLength": 100
+                  },
+                  "breed": {
+                    "type": "string",
+                    "minLength": 1,
+                    "maxLength": 50
+                  },
+                  "age": {
+                    "type": "integer",
+                    "minimum": 0,
+                    "maximum": 30
+                  },
+                  "weight": {
+                    "type": "number",
+                    "minimum": 0,
+                    "exclusiveMinimum": true,
+                    "maximum": 200
+                  },
+                  "gender": {
+                    "type": "string",
+                    "enum": [
+                      "male",
+                      "female"
+                    ]
+                  },
+                  "color": {
+                    "type": "string",
+                    "minLength": 1,
+                    "maxLength": 50
+                  },
+                  "size": {
+                    "type": "string",
+                    "enum": [
+                      "small",
+                      "medium",
+                      "large",
+                      "extra-large"
+                    ]
+                  },
+                  "temperament": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    },
+                    "maxItems": 10
+                  },
+                  "isNeutered": {
+                    "type": "boolean"
+                  },
+                  "microchipId": {
+                    "type": "string"
+                  },
+                  "photos": {
+                    "type": "array",
+                    "items": {
+                      "type": "string",
+                      "format": "uri"
+                    },
+                    "maxItems": 10
+                  },
+                  "description": {
+                    "type": "string",
+                    "maxLength": 1000
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Dog updated successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "string",
+                      "format": "uuid"
+                    },
+                    "name": {
+                      "type": "string",
+                      "minLength": 1,
+                      "maxLength": 100
+                    },
+                    "breed": {
+                      "type": "string",
+                      "minLength": 1,
+                      "maxLength": 50
+                    },
+                    "age": {
+                      "type": "integer",
+                      "minimum": 0,
+                      "maximum": 30
+                    },
+                    "weight": {
+                      "type": "number",
+                      "minimum": 0,
+                      "exclusiveMinimum": true,
+                      "maximum": 200
+                    },
+                    "gender": {
+                      "type": "string",
+                      "enum": [
+                        "male",
+                        "female"
+                      ]
+                    },
+                    "color": {
+                      "type": "string",
+                      "minLength": 1,
+                      "maxLength": 50
+                    },
+                    "size": {
+                      "type": "string",
+                      "enum": [
+                        "small",
+                        "medium",
+                        "large",
+                        "extra-large"
+                      ]
+                    },
+                    "temperament": {
+                      "type": "array",
+                      "items": {
+                        "type": "string"
+                      },
+                      "maxItems": 10
+                    },
+                    "isNeutered": {
+                      "type": "boolean"
+                    },
+                    "microchipId": {
+                      "type": "string"
+                    },
+                    "photos": {
+                      "type": "array",
+                      "items": {
+                        "type": "string",
+                        "format": "uri"
+                      },
+                      "maxItems": 10
+                    },
+                    "description": {
+                      "type": "string",
+                      "maxLength": 1000
+                    },
+                    "createdAt": {
+                      "type": "string",
+                      "format": "date-time"
+                    },
+                    "updatedAt": {
+                      "type": "string",
+                      "format": "date-time"
+                    }
+                  },
+                  "required": [
+                    "id",
+                    "name",
+                    "breed",
+                    "age",
+                    "weight",
+                    "gender",
+                    "color",
+                    "size",
+                    "temperament",
+                    "isNeutered",
+                    "photos",
+                    "description",
+                    "createdAt",
+                    "updatedAt"
+                  ]
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Dog not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string"
+                    },
+                    "message": {
+                      "type": "string"
+                    },
+                    "details": {
+                      "nullable": true
+                    }
+                  },
+                  "required": [
+                    "error",
+                    "message"
+                  ]
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "summary": "Delete dog",
+        "description": "Remove a dog from the database",
+        "parameters": [
+          {
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            },
+            "required": true,
+            "name": "id",
+            "in": "path"
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Dog deleted successfully"
+          },
+          "404": {
+            "description": "Dog not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string"
+                    },
+                    "message": {
+                      "type": "string"
+                    },
+                    "details": {
+                      "nullable": true
+                    }
+                  },
+                  "required": [
+                    "error",
+                    "message"
+                  ]
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/dogs/{id}/photos": {
+      "get": {
+        "summary": "Get dog photos",
+        "description": "Get all photos for a specific dog",
+        "parameters": [
+          {
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            },
+            "required": true,
+            "name": "id",
+            "in": "path"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Dog photos",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "dogId": {
+                      "type": "string",
+                      "format": "uuid"
+                    },
+                    "photos": {
+                      "type": "array",
+                      "items": {
+                        "type": "string",
+                        "format": "uri"
+                      }
+                    }
+                  },
+                  "required": [
+                    "dogId",
+                    "photos"
+                  ]
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Dog not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string"
+                    },
+                    "message": {
+                      "type": "string"
+                    },
+                    "details": {
+                      "nullable": true
+                    }
+                  },
+                  "required": [
+                    "error",
+                    "message"
+                  ]
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/breeds": {
+      "get": {
+        "summary": "List all dog breeds",
+        "description": "Retrieve a list of all available dog breeds with their characteristics",
+        "parameters": [
+          {
+            "schema": {
+              "type": "string",
+              "enum": [
+                "sporting",
+                "hound",
+                "working",
+                "terrier",
+                "toy",
+                "non-sporting",
+                "herding",
+                "mixed"
+              ]
+            },
+            "required": false,
+            "name": "group",
+            "in": "query"
+          },
+          {
+            "schema": {
+              "type": "string",
+              "enum": [
+                "small",
+                "medium",
+                "large",
+                "extra-large"
+              ]
+            },
+            "required": false,
+            "name": "size",
+            "in": "query"
+          },
+          {
+            "schema": {
+              "type": "string",
+              "enum": [
+                "low",
+                "moderate",
+                "high",
+                "very-high"
+              ]
+            },
+            "required": false,
+            "name": "exerciseNeeds",
+            "in": "query"
+          },
+          {
+            "schema": {
+              "type": "boolean",
+              "nullable": true
+            },
+            "required": false,
+            "name": "goodWithKids",
+            "in": "query"
+          },
+          {
+            "schema": {
+              "type": "boolean",
+              "nullable": true
+            },
+            "required": false,
+            "name": "goodWithPets",
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "List of dog breeds",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "id": {
+                        "type": "string",
+                        "format": "uuid"
+                      },
+                      "name": {
+                        "type": "string",
+                        "minLength": 1,
+                        "maxLength": 100
+                      },
+                      "group": {
+                        "type": "string",
+                        "enum": [
+                          "sporting",
+                          "hound",
+                          "working",
+                          "terrier",
+                          "toy",
+                          "non-sporting",
+                          "herding",
+                          "mixed"
+                        ]
+                      },
+                      "origin": {
+                        "type": "string",
+                        "minLength": 1,
+                        "maxLength": 100
+                      },
+                      "size": {
+                        "type": "string",
+                        "enum": [
+                          "small",
+                          "medium",
+                          "large",
+                          "extra-large"
+                        ]
+                      },
+                      "lifeSpan": {
+                        "type": "object",
+                        "properties": {
+                          "min": {
+                            "type": "integer",
+                            "minimum": 1,
+                            "maximum": 30
+                          },
+                          "max": {
+                            "type": "integer",
+                            "minimum": 1,
+                            "maximum": 30
+                          }
+                        },
+                        "required": [
+                          "min",
+                          "max"
+                        ]
+                      },
+                      "temperament": {
+                        "type": "array",
+                        "items": {
+                          "type": "string"
+                        },
+                        "maxItems": 15
+                      },
+                      "exerciseNeeds": {
+                        "type": "string",
+                        "enum": [
+                          "low",
+                          "moderate",
+                          "high",
+                          "very-high"
+                        ]
+                      },
+                      "groomingNeeds": {
+                        "type": "string",
+                        "enum": [
+                          "low",
+                          "moderate",
+                          "high"
+                        ]
+                      },
+                      "trainability": {
+                        "type": "string",
+                        "enum": [
+                          "low",
+                          "moderate",
+                          "high",
+                          "very-high"
+                        ]
+                      },
+                      "goodWithKids": {
+                        "type": "boolean"
+                      },
+                      "goodWithPets": {
+                        "type": "boolean"
+                      },
+                      "description": {
+                        "type": "string",
+                        "maxLength": 2000
+                      },
+                      "image": {
+                        "type": "string",
+                        "format": "uri"
+                      },
+                      "createdAt": {
+                        "type": "string",
+                        "format": "date-time"
+                      },
+                      "updatedAt": {
+                        "type": "string",
+                        "format": "date-time"
+                      }
+                    },
+                    "required": [
+                      "id",
+                      "name",
+                      "group",
+                      "origin",
+                      "size",
+                      "lifeSpan",
+                      "temperament",
+                      "exerciseNeeds",
+                      "groomingNeeds",
+                      "trainability",
+                      "goodWithKids",
+                      "goodWithPets",
+                      "description",
+                      "createdAt",
+                      "updatedAt"
+                    ]
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/breeds/{id}": {
+      "get": {
+        "summary": "Get breed by ID",
+        "description": "Retrieve detailed information about a specific dog breed",
+        "parameters": [
+          {
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            },
+            "required": true,
+            "name": "id",
+            "in": "path"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Breed details",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "string",
+                      "format": "uuid"
+                    },
+                    "name": {
+                      "type": "string",
+                      "minLength": 1,
+                      "maxLength": 100
+                    },
+                    "group": {
+                      "type": "string",
+                      "enum": [
+                        "sporting",
+                        "hound",
+                        "working",
+                        "terrier",
+                        "toy",
+                        "non-sporting",
+                        "herding",
+                        "mixed"
+                      ]
+                    },
+                    "origin": {
+                      "type": "string",
+                      "minLength": 1,
+                      "maxLength": 100
+                    },
+                    "size": {
+                      "type": "string",
+                      "enum": [
+                        "small",
+                        "medium",
+                        "large",
+                        "extra-large"
+                      ]
+                    },
+                    "lifeSpan": {
+                      "type": "object",
+                      "properties": {
+                        "min": {
+                          "type": "integer",
+                          "minimum": 1,
+                          "maximum": 30
+                        },
+                        "max": {
+                          "type": "integer",
+                          "minimum": 1,
+                          "maximum": 30
+                        }
+                      },
+                      "required": [
+                        "min",
+                        "max"
+                      ]
+                    },
+                    "temperament": {
+                      "type": "array",
+                      "items": {
+                        "type": "string"
+                      },
+                      "maxItems": 15
+                    },
+                    "exerciseNeeds": {
+                      "type": "string",
+                      "enum": [
+                        "low",
+                        "moderate",
+                        "high",
+                        "very-high"
+                      ]
+                    },
+                    "groomingNeeds": {
+                      "type": "string",
+                      "enum": [
+                        "low",
+                        "moderate",
+                        "high"
+                      ]
+                    },
+                    "trainability": {
+                      "type": "string",
+                      "enum": [
+                        "low",
+                        "moderate",
+                        "high",
+                        "very-high"
+                      ]
+                    },
+                    "goodWithKids": {
+                      "type": "boolean"
+                    },
+                    "goodWithPets": {
+                      "type": "boolean"
+                    },
+                    "description": {
+                      "type": "string",
+                      "maxLength": 2000
+                    },
+                    "image": {
+                      "type": "string",
+                      "format": "uri"
+                    },
+                    "createdAt": {
+                      "type": "string",
+                      "format": "date-time"
+                    },
+                    "updatedAt": {
+                      "type": "string",
+                      "format": "date-time"
+                    }
+                  },
+                  "required": [
+                    "id",
+                    "name",
+                    "group",
+                    "origin",
+                    "size",
+                    "lifeSpan",
+                    "temperament",
+                    "exerciseNeeds",
+                    "groomingNeeds",
+                    "trainability",
+                    "goodWithKids",
+                    "goodWithPets",
+                    "description",
+                    "createdAt",
+                    "updatedAt"
+                  ]
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Breed not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string"
+                    },
+                    "message": {
+                      "type": "string"
+                    },
+                    "details": {
+                      "nullable": true
+                    }
+                  },
+                  "required": [
+                    "error",
+                    "message"
+                  ]
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/breeds/search": {
+      "get": {
+        "summary": "Search breeds by name",
+        "description": "Search for dog breeds by name or partial name match",
+        "parameters": [
+          {
+            "schema": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 100
+            },
+            "required": true,
+            "name": "q",
+            "in": "query"
+          },
+          {
+            "schema": {
+              "type": "integer",
+              "minimum": 0,
+              "exclusiveMinimum": true,
+              "maximum": 50,
+              "default": 10
+            },
+            "required": false,
+            "name": "limit",
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Matching breeds",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "id": {
+                        "type": "string",
+                        "format": "uuid"
+                      },
+                      "name": {
+                        "type": "string",
+                        "minLength": 1,
+                        "maxLength": 100
+                      },
+                      "group": {
+                        "type": "string",
+                        "enum": [
+                          "sporting",
+                          "hound",
+                          "working",
+                          "terrier",
+                          "toy",
+                          "non-sporting",
+                          "herding",
+                          "mixed"
+                        ]
+                      },
+                      "origin": {
+                        "type": "string",
+                        "minLength": 1,
+                        "maxLength": 100
+                      },
+                      "size": {
+                        "type": "string",
+                        "enum": [
+                          "small",
+                          "medium",
+                          "large",
+                          "extra-large"
+                        ]
+                      },
+                      "lifeSpan": {
+                        "type": "object",
+                        "properties": {
+                          "min": {
+                            "type": "integer",
+                            "minimum": 1,
+                            "maximum": 30
+                          },
+                          "max": {
+                            "type": "integer",
+                            "minimum": 1,
+                            "maximum": 30
+                          }
+                        },
+                        "required": [
+                          "min",
+                          "max"
+                        ]
+                      },
+                      "temperament": {
+                        "type": "array",
+                        "items": {
+                          "type": "string"
+                        },
+                        "maxItems": 15
+                      },
+                      "exerciseNeeds": {
+                        "type": "string",
+                        "enum": [
+                          "low",
+                          "moderate",
+                          "high",
+                          "very-high"
+                        ]
+                      },
+                      "groomingNeeds": {
+                        "type": "string",
+                        "enum": [
+                          "low",
+                          "moderate",
+                          "high"
+                        ]
+                      },
+                      "trainability": {
+                        "type": "string",
+                        "enum": [
+                          "low",
+                          "moderate",
+                          "high",
+                          "very-high"
+                        ]
+                      },
+                      "goodWithKids": {
+                        "type": "boolean"
+                      },
+                      "goodWithPets": {
+                        "type": "boolean"
+                      },
+                      "description": {
+                        "type": "string",
+                        "maxLength": 2000
+                      },
+                      "image": {
+                        "type": "string",
+                        "format": "uri"
+                      },
+                      "createdAt": {
+                        "type": "string",
+                        "format": "date-time"
+                      },
+                      "updatedAt": {
+                        "type": "string",
+                        "format": "date-time"
+                      }
+                    },
+                    "required": [
+                      "id",
+                      "name",
+                      "group",
+                      "origin",
+                      "size",
+                      "lifeSpan",
+                      "temperament",
+                      "exerciseNeeds",
+                      "groomingNeeds",
+                      "trainability",
+                      "goodWithKids",
+                      "goodWithPets",
+                      "description",
+                      "createdAt",
+                      "updatedAt"
+                    ]
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/breeds/groups": {
+      "get": {
+        "summary": "Get all breed groups",
+        "description": "Retrieve a list of all available dog breed groups",
+        "responses": {
+          "200": {
+            "description": "List of breed groups with counts",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "groups": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "name": {
+                            "type": "string"
+                          },
+                          "description": {
+                            "type": "string"
+                          },
+                          "count": {
+                            "type": "integer",
+                            "minimum": 0
+                          }
+                        },
+                        "required": [
+                          "name",
+                          "description",
+                          "count"
+                        ]
+                      }
+                    }
+                  },
+                  "required": [
+                    "groups"
+                  ]
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/adoption/applications": {
+      "get": {
+        "summary": "List adoption applications",
+        "description": "Retrieve all adoption applications with optional status filtering",
+        "parameters": [
+          {
+            "schema": {
+              "type": "string",
+              "enum": [
+                "pending",
+                "approved",
+                "rejected",
+                "withdrawn"
+              ]
+            },
+            "required": false,
+            "name": "status",
+            "in": "query"
+          },
+          {
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            },
+            "required": false,
+            "name": "dogId",
+            "in": "query"
+          },
+          {
+            "schema": {
+              "type": "integer",
+              "minimum": 0,
+              "exclusiveMinimum": true,
+              "default": 1
+            },
+            "required": false,
+            "name": "page",
+            "in": "query"
+          },
+          {
+            "schema": {
+              "type": "integer",
+              "minimum": 0,
+              "exclusiveMinimum": true,
+              "maximum": 100,
+              "default": 10
+            },
+            "required": false,
+            "name": "limit",
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "List of adoption applications",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "data": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "id": {
+                            "type": "string",
+                            "format": "uuid"
+                          },
+                          "dogId": {
+                            "type": "string",
+                            "format": "uuid"
+                          },
+                          "applicantName": {
+                            "type": "string",
+                            "minLength": 1,
+                            "maxLength": 100
+                          },
+                          "applicantEmail": {
+                            "type": "string",
+                            "format": "email"
+                          },
+                          "applicantPhone": {
+                            "type": "string",
+                            "minLength": 10,
+                            "maxLength": 20
+                          },
+                          "address": {
+                            "type": "object",
+                            "properties": {
+                              "street": {
+                                "type": "string",
+                                "minLength": 1,
+                                "maxLength": 200
+                              },
+                              "city": {
+                                "type": "string",
+                                "minLength": 1,
+                                "maxLength": 100
+                              },
+                              "state": {
+                                "type": "string",
+                                "minLength": 2,
+                                "maxLength": 50
+                              },
+                              "zipCode": {
+                                "type": "string",
+                                "minLength": 5,
+                                "maxLength": 10
+                              }
+                            },
+                            "required": [
+                              "street",
+                              "city",
+                              "state",
+                              "zipCode"
+                            ]
+                          },
+                          "housingType": {
+                            "type": "string",
+                            "enum": [
+                              "apartment",
+                              "house",
+                              "condo",
+                              "farm",
+                              "other"
+                            ]
+                          },
+                          "hasYard": {
+                            "type": "boolean"
+                          },
+                          "hasOtherPets": {
+                            "type": "boolean"
+                          },
+                          "otherPetsDetails": {
+                            "type": "string",
+                            "maxLength": 500
+                          },
+                          "experience": {
+                            "type": "string",
+                            "enum": [
+                              "none",
+                              "some",
+                              "experienced",
+                              "very-experienced"
+                            ]
+                          },
+                          "workSchedule": {
+                            "type": "string",
+                            "maxLength": 200
+                          },
+                          "reason": {
+                            "type": "string",
+                            "minLength": 10,
+                            "maxLength": 1000
+                          },
+                          "status": {
+                            "type": "string",
+                            "enum": [
+                              "pending",
+                              "approved",
+                              "rejected",
+                              "withdrawn"
+                            ]
+                          },
+                          "notes": {
+                            "type": "string",
+                            "maxLength": 1000
+                          },
+                          "createdAt": {
+                            "type": "string",
+                            "format": "date-time"
+                          },
+                          "updatedAt": {
+                            "type": "string",
+                            "format": "date-time"
+                          }
+                        },
+                        "required": [
+                          "id",
+                          "dogId",
+                          "applicantName",
+                          "applicantEmail",
+                          "applicantPhone",
+                          "address",
+                          "housingType",
+                          "hasYard",
+                          "hasOtherPets",
+                          "experience",
+                          "workSchedule",
+                          "reason",
+                          "status",
+                          "createdAt",
+                          "updatedAt"
+                        ]
+                      }
+                    },
+                    "pagination": {
+                      "type": "object",
+                      "properties": {
+                        "page": {
+                          "type": "integer"
+                        },
+                        "limit": {
+                          "type": "integer"
+                        },
+                        "total": {
+                          "type": "integer"
+                        },
+                        "totalPages": {
+                          "type": "integer"
+                        }
+                      },
+                      "required": [
+                        "page",
+                        "limit",
+                        "total",
+                        "totalPages"
+                      ]
+                    }
+                  },
+                  "required": [
+                    "data",
+                    "pagination"
+                  ]
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "summary": "Submit adoption application",
+        "description": "Submit a new adoption application for a dog",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "dogId": {
+                    "type": "string",
+                    "format": "uuid"
+                  },
+                  "applicantName": {
+                    "type": "string",
+                    "minLength": 1,
+                    "maxLength": 100
+                  },
+                  "applicantEmail": {
+                    "type": "string",
+                    "format": "email"
+                  },
+                  "applicantPhone": {
+                    "type": "string",
+                    "minLength": 10,
+                    "maxLength": 20
+                  },
+                  "address": {
+                    "type": "object",
+                    "properties": {
+                      "street": {
+                        "type": "string",
+                        "minLength": 1,
+                        "maxLength": 200
+                      },
+                      "city": {
+                        "type": "string",
+                        "minLength": 1,
+                        "maxLength": 100
+                      },
+                      "state": {
+                        "type": "string",
+                        "minLength": 2,
+                        "maxLength": 50
+                      },
+                      "zipCode": {
+                        "type": "string",
+                        "minLength": 5,
+                        "maxLength": 10
+                      }
+                    },
+                    "required": [
+                      "street",
+                      "city",
+                      "state",
+                      "zipCode"
+                    ]
+                  },
+                  "housingType": {
+                    "type": "string",
+                    "enum": [
+                      "apartment",
+                      "house",
+                      "condo",
+                      "farm",
+                      "other"
+                    ]
+                  },
+                  "hasYard": {
+                    "type": "boolean"
+                  },
+                  "hasOtherPets": {
+                    "type": "boolean"
+                  },
+                  "otherPetsDetails": {
+                    "type": "string",
+                    "maxLength": 500
+                  },
+                  "experience": {
+                    "type": "string",
+                    "enum": [
+                      "none",
+                      "some",
+                      "experienced",
+                      "very-experienced"
+                    ]
+                  },
+                  "workSchedule": {
+                    "type": "string",
+                    "maxLength": 200
+                  },
+                  "reason": {
+                    "type": "string",
+                    "minLength": 10,
+                    "maxLength": 1000
+                  }
+                },
+                "required": [
+                  "dogId",
+                  "applicantName",
+                  "applicantEmail",
+                  "applicantPhone",
+                  "address",
+                  "housingType",
+                  "hasYard",
+                  "hasOtherPets",
+                  "experience",
+                  "workSchedule",
+                  "reason"
+                ]
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Adoption application created successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "string",
+                      "format": "uuid"
+                    },
+                    "dogId": {
+                      "type": "string",
+                      "format": "uuid"
+                    },
+                    "applicantName": {
+                      "type": "string",
+                      "minLength": 1,
+                      "maxLength": 100
+                    },
+                    "applicantEmail": {
+                      "type": "string",
+                      "format": "email"
+                    },
+                    "applicantPhone": {
+                      "type": "string",
+                      "minLength": 10,
+                      "maxLength": 20
+                    },
+                    "address": {
+                      "type": "object",
+                      "properties": {
+                        "street": {
+                          "type": "string",
+                          "minLength": 1,
+                          "maxLength": 200
+                        },
+                        "city": {
+                          "type": "string",
+                          "minLength": 1,
+                          "maxLength": 100
+                        },
+                        "state": {
+                          "type": "string",
+                          "minLength": 2,
+                          "maxLength": 50
+                        },
+                        "zipCode": {
+                          "type": "string",
+                          "minLength": 5,
+                          "maxLength": 10
+                        }
+                      },
+                      "required": [
+                        "street",
+                        "city",
+                        "state",
+                        "zipCode"
+                      ]
+                    },
+                    "housingType": {
+                      "type": "string",
+                      "enum": [
+                        "apartment",
+                        "house",
+                        "condo",
+                        "farm",
+                        "other"
+                      ]
+                    },
+                    "hasYard": {
+                      "type": "boolean"
+                    },
+                    "hasOtherPets": {
+                      "type": "boolean"
+                    },
+                    "otherPetsDetails": {
+                      "type": "string",
+                      "maxLength": 500
+                    },
+                    "experience": {
+                      "type": "string",
+                      "enum": [
+                        "none",
+                        "some",
+                        "experienced",
+                        "very-experienced"
+                      ]
+                    },
+                    "workSchedule": {
+                      "type": "string",
+                      "maxLength": 200
+                    },
+                    "reason": {
+                      "type": "string",
+                      "minLength": 10,
+                      "maxLength": 1000
+                    },
+                    "status": {
+                      "type": "string",
+                      "enum": [
+                        "pending",
+                        "approved",
+                        "rejected",
+                        "withdrawn"
+                      ]
+                    },
+                    "notes": {
+                      "type": "string",
+                      "maxLength": 1000
+                    },
+                    "createdAt": {
+                      "type": "string",
+                      "format": "date-time"
+                    },
+                    "updatedAt": {
+                      "type": "string",
+                      "format": "date-time"
+                    }
+                  },
+                  "required": [
+                    "id",
+                    "dogId",
+                    "applicantName",
+                    "applicantEmail",
+                    "applicantPhone",
+                    "address",
+                    "housingType",
+                    "hasYard",
+                    "hasOtherPets",
+                    "experience",
+                    "workSchedule",
+                    "reason",
+                    "status",
+                    "createdAt",
+                    "updatedAt"
+                  ]
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid input data",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string"
+                    },
+                    "message": {
+                      "type": "string"
+                    },
+                    "details": {
+                      "nullable": true
+                    }
+                  },
+                  "required": [
+                    "error",
+                    "message"
+                  ]
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Dog not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string"
+                    },
+                    "message": {
+                      "type": "string"
+                    },
+                    "details": {
+                      "nullable": true
+                    }
+                  },
+                  "required": [
+                    "error",
+                    "message"
+                  ]
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/adoption/applications/{id}": {
+      "get": {
+        "summary": "Get adoption application",
+        "description": "Retrieve a specific adoption application by ID",
+        "parameters": [
+          {
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            },
+            "required": true,
+            "name": "id",
+            "in": "path"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Adoption application details",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "string",
+                      "format": "uuid"
+                    },
+                    "dogId": {
+                      "type": "string",
+                      "format": "uuid"
+                    },
+                    "applicantName": {
+                      "type": "string",
+                      "minLength": 1,
+                      "maxLength": 100
+                    },
+                    "applicantEmail": {
+                      "type": "string",
+                      "format": "email"
+                    },
+                    "applicantPhone": {
+                      "type": "string",
+                      "minLength": 10,
+                      "maxLength": 20
+                    },
+                    "address": {
+                      "type": "object",
+                      "properties": {
+                        "street": {
+                          "type": "string",
+                          "minLength": 1,
+                          "maxLength": 200
+                        },
+                        "city": {
+                          "type": "string",
+                          "minLength": 1,
+                          "maxLength": 100
+                        },
+                        "state": {
+                          "type": "string",
+                          "minLength": 2,
+                          "maxLength": 50
+                        },
+                        "zipCode": {
+                          "type": "string",
+                          "minLength": 5,
+                          "maxLength": 10
+                        }
+                      },
+                      "required": [
+                        "street",
+                        "city",
+                        "state",
+                        "zipCode"
+                      ]
+                    },
+                    "housingType": {
+                      "type": "string",
+                      "enum": [
+                        "apartment",
+                        "house",
+                        "condo",
+                        "farm",
+                        "other"
+                      ]
+                    },
+                    "hasYard": {
+                      "type": "boolean"
+                    },
+                    "hasOtherPets": {
+                      "type": "boolean"
+                    },
+                    "otherPetsDetails": {
+                      "type": "string",
+                      "maxLength": 500
+                    },
+                    "experience": {
+                      "type": "string",
+                      "enum": [
+                        "none",
+                        "some",
+                        "experienced",
+                        "very-experienced"
+                      ]
+                    },
+                    "workSchedule": {
+                      "type": "string",
+                      "maxLength": 200
+                    },
+                    "reason": {
+                      "type": "string",
+                      "minLength": 10,
+                      "maxLength": 1000
+                    },
+                    "status": {
+                      "type": "string",
+                      "enum": [
+                        "pending",
+                        "approved",
+                        "rejected",
+                        "withdrawn"
+                      ]
+                    },
+                    "notes": {
+                      "type": "string",
+                      "maxLength": 1000
+                    },
+                    "createdAt": {
+                      "type": "string",
+                      "format": "date-time"
+                    },
+                    "updatedAt": {
+                      "type": "string",
+                      "format": "date-time"
+                    }
+                  },
+                  "required": [
+                    "id",
+                    "dogId",
+                    "applicantName",
+                    "applicantEmail",
+                    "applicantPhone",
+                    "address",
+                    "housingType",
+                    "hasYard",
+                    "hasOtherPets",
+                    "experience",
+                    "workSchedule",
+                    "reason",
+                    "status",
+                    "createdAt",
+                    "updatedAt"
+                  ]
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Application not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string"
+                    },
+                    "message": {
+                      "type": "string"
+                    },
+                    "details": {
+                      "nullable": true
+                    }
+                  },
+                  "required": [
+                    "error",
+                    "message"
+                  ]
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/adoption/applications/{id}/status": {
+      "put": {
+        "summary": "Update application status",
+        "description": "Update the status of an adoption application (approve, reject, etc.)",
+        "parameters": [
+          {
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            },
+            "required": true,
+            "name": "id",
+            "in": "path"
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "status": {
+                    "type": "string",
+                    "enum": [
+                      "pending",
+                      "approved",
+                      "rejected",
+                      "withdrawn"
+                    ]
+                  },
+                  "notes": {
+                    "type": "string",
+                    "maxLength": 1000
+                  }
+                },
+                "required": [
+                  "status"
+                ]
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Application status updated successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "string",
+                      "format": "uuid"
+                    },
+                    "dogId": {
+                      "type": "string",
+                      "format": "uuid"
+                    },
+                    "applicantName": {
+                      "type": "string",
+                      "minLength": 1,
+                      "maxLength": 100
+                    },
+                    "applicantEmail": {
+                      "type": "string",
+                      "format": "email"
+                    },
+                    "applicantPhone": {
+                      "type": "string",
+                      "minLength": 10,
+                      "maxLength": 20
+                    },
+                    "address": {
+                      "type": "object",
+                      "properties": {
+                        "street": {
+                          "type": "string",
+                          "minLength": 1,
+                          "maxLength": 200
+                        },
+                        "city": {
+                          "type": "string",
+                          "minLength": 1,
+                          "maxLength": 100
+                        },
+                        "state": {
+                          "type": "string",
+                          "minLength": 2,
+                          "maxLength": 50
+                        },
+                        "zipCode": {
+                          "type": "string",
+                          "minLength": 5,
+                          "maxLength": 10
+                        }
+                      },
+                      "required": [
+                        "street",
+                        "city",
+                        "state",
+                        "zipCode"
+                      ]
+                    },
+                    "housingType": {
+                      "type": "string",
+                      "enum": [
+                        "apartment",
+                        "house",
+                        "condo",
+                        "farm",
+                        "other"
+                      ]
+                    },
+                    "hasYard": {
+                      "type": "boolean"
+                    },
+                    "hasOtherPets": {
+                      "type": "boolean"
+                    },
+                    "otherPetsDetails": {
+                      "type": "string",
+                      "maxLength": 500
+                    },
+                    "experience": {
+                      "type": "string",
+                      "enum": [
+                        "none",
+                        "some",
+                        "experienced",
+                        "very-experienced"
+                      ]
+                    },
+                    "workSchedule": {
+                      "type": "string",
+                      "maxLength": 200
+                    },
+                    "reason": {
+                      "type": "string",
+                      "minLength": 10,
+                      "maxLength": 1000
+                    },
+                    "status": {
+                      "type": "string",
+                      "enum": [
+                        "pending",
+                        "approved",
+                        "rejected",
+                        "withdrawn"
+                      ]
+                    },
+                    "notes": {
+                      "type": "string",
+                      "maxLength": 1000
+                    },
+                    "createdAt": {
+                      "type": "string",
+                      "format": "date-time"
+                    },
+                    "updatedAt": {
+                      "type": "string",
+                      "format": "date-time"
+                    }
+                  },
+                  "required": [
+                    "id",
+                    "dogId",
+                    "applicantName",
+                    "applicantEmail",
+                    "applicantPhone",
+                    "address",
+                    "housingType",
+                    "hasYard",
+                    "hasOtherPets",
+                    "experience",
+                    "workSchedule",
+                    "reason",
+                    "status",
+                    "createdAt",
+                    "updatedAt"
+                  ]
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Application not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string"
+                    },
+                    "message": {
+                      "type": "string"
+                    },
+                    "details": {
+                      "nullable": true
+                    }
+                  },
+                  "required": [
+                    "error",
+                    "message"
+                  ]
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/adoption/available": {
+      "get": {
+        "summary": "Get available dogs",
+        "description": "Retrieve dogs that are available for adoption (no approved applications)",
+        "parameters": [
+          {
+            "schema": {
+              "type": "string"
+            },
+            "required": false,
+            "name": "breed",
+            "in": "query"
+          },
+          {
+            "schema": {
+              "type": "string",
+              "enum": [
+                "small",
+                "medium",
+                "large",
+                "extra-large"
+              ]
+            },
+            "required": false,
+            "name": "size",
+            "in": "query"
+          },
+          {
+            "schema": {
+              "type": "integer",
+              "minimum": 0,
+              "exclusiveMinimum": true
+            },
+            "required": false,
+            "name": "age_max",
+            "in": "query"
+          },
+          {
+            "schema": {
+              "type": "boolean",
+              "nullable": true
+            },
+            "required": false,
+            "name": "goodWithKids",
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Available dogs for adoption",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "id": {
+                        "type": "string",
+                        "format": "uuid"
+                      },
+                      "name": {
+                        "type": "string",
+                        "minLength": 1,
+                        "maxLength": 100
+                      },
+                      "breed": {
+                        "type": "string",
+                        "minLength": 1,
+                        "maxLength": 50
+                      },
+                      "age": {
+                        "type": "integer",
+                        "minimum": 0,
+                        "maximum": 30
+                      },
+                      "weight": {
+                        "type": "number",
+                        "minimum": 0,
+                        "exclusiveMinimum": true,
+                        "maximum": 200
+                      },
+                      "gender": {
+                        "type": "string",
+                        "enum": [
+                          "male",
+                          "female"
+                        ]
+                      },
+                      "color": {
+                        "type": "string",
+                        "minLength": 1,
+                        "maxLength": 50
+                      },
+                      "size": {
+                        "type": "string",
+                        "enum": [
+                          "small",
+                          "medium",
+                          "large",
+                          "extra-large"
+                        ]
+                      },
+                      "temperament": {
+                        "type": "array",
+                        "items": {
+                          "type": "string"
+                        },
+                        "maxItems": 10
+                      },
+                      "isNeutered": {
+                        "type": "boolean"
+                      },
+                      "microchipId": {
+                        "type": "string"
+                      },
+                      "photos": {
+                        "type": "array",
+                        "items": {
+                          "type": "string",
+                          "format": "uri"
+                        },
+                        "maxItems": 10
+                      },
+                      "description": {
+                        "type": "string",
+                        "maxLength": 1000
+                      },
+                      "createdAt": {
+                        "type": "string",
+                        "format": "date-time"
+                      },
+                      "updatedAt": {
+                        "type": "string",
+                        "format": "date-time"
+                      }
+                    },
+                    "required": [
+                      "id",
+                      "name",
+                      "breed",
+                      "age",
+                      "weight",
+                      "gender",
+                      "color",
+                      "size",
+                      "temperament",
+                      "isNeutered",
+                      "photos",
+                      "description",
+                      "createdAt",
+                      "updatedAt"
+                    ]
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/adoption/stats": {
+      "get": {
+        "summary": "Get adoption statistics",
+        "description": "Retrieve statistics about adoptions and applications",
+        "responses": {
+          "200": {
+            "description": "Adoption statistics",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "totalDogs": {
+                      "type": "integer"
+                    },
+                    "availableForAdoption": {
+                      "type": "integer"
+                    },
+                    "totalApplications": {
+                      "type": "integer"
+                    },
+                    "pendingApplications": {
+                      "type": "integer"
+                    },
+                    "approvedApplications": {
+                      "type": "integer"
+                    },
+                    "rejectedApplications": {
+                      "type": "integer"
+                    },
+                    "adoptionRate": {
+                      "type": "number"
+                    }
+                  },
+                  "required": [
+                    "totalDogs",
+                    "availableForAdoption",
+                    "totalApplications",
+                    "pendingApplications",
+                    "approvedApplications",
+                    "rejectedApplications",
+                    "adoptionRate"
+                  ]
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/health/records": {
+      "get": {
+        "summary": "List health records",
+        "description": "Retrieve health records with optional filtering by dog or record type",
+        "parameters": [
+          {
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            },
+            "required": false,
+            "name": "dogId",
+            "in": "query"
+          },
+          {
+            "schema": {
+              "type": "string",
+              "enum": [
+                "vaccination",
+                "checkup",
+                "treatment",
+                "surgery",
+                "emergency",
+                "dental",
+                "grooming"
+              ]
+            },
+            "required": false,
+            "name": "type",
+            "in": "query"
+          },
+          {
+            "schema": {
+              "type": "string"
+            },
+            "required": false,
+            "name": "veterinarian",
+            "in": "query"
+          },
+          {
+            "schema": {
+              "type": "string",
+              "format": "date"
+            },
+            "required": false,
+            "name": "dateFrom",
+            "in": "query"
+          },
+          {
+            "schema": {
+              "type": "string",
+              "format": "date"
+            },
+            "required": false,
+            "name": "dateTo",
+            "in": "query"
+          },
+          {
+            "schema": {
+              "type": "integer",
+              "minimum": 0,
+              "exclusiveMinimum": true,
+              "default": 1
+            },
+            "required": false,
+            "name": "page",
+            "in": "query"
+          },
+          {
+            "schema": {
+              "type": "integer",
+              "minimum": 0,
+              "exclusiveMinimum": true,
+              "maximum": 100,
+              "default": 10
+            },
+            "required": false,
+            "name": "limit",
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "List of health records",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "data": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "id": {
+                            "type": "string",
+                            "format": "uuid"
+                          },
+                          "dogId": {
+                            "type": "string",
+                            "format": "uuid"
+                          },
+                          "type": {
+                            "type": "string",
+                            "enum": [
+                              "vaccination",
+                              "checkup",
+                              "treatment",
+                              "surgery",
+                              "emergency",
+                              "dental",
+                              "grooming"
+                            ]
+                          },
+                          "date": {
+                            "type": "string",
+                            "format": "date"
+                          },
+                          "veterinarian": {
+                            "type": "string",
+                            "minLength": 1,
+                            "maxLength": 100
+                          },
+                          "clinic": {
+                            "type": "string",
+                            "minLength": 1,
+                            "maxLength": 200
+                          },
+                          "description": {
+                            "type": "string",
+                            "minLength": 1,
+                            "maxLength": 1000
+                          },
+                          "medications": {
+                            "type": "array",
+                            "items": {
+                              "type": "object",
+                              "properties": {
+                                "name": {
+                                  "type": "string",
+                                  "minLength": 1,
+                                  "maxLength": 100
+                                },
+                                "dosage": {
+                                  "type": "string",
+                                  "minLength": 1,
+                                  "maxLength": 50
+                                },
+                                "frequency": {
+                                  "type": "string",
+                                  "minLength": 1,
+                                  "maxLength": 100
+                                }
+                              },
+                              "required": [
+                                "name",
+                                "dosage",
+                                "frequency"
+                              ]
+                            }
+                          },
+                          "cost": {
+                            "type": "number",
+                            "minimum": 0
+                          },
+                          "followUpDate": {
+                            "type": "string",
+                            "format": "date"
+                          },
+                          "notes": {
+                            "type": "string",
+                            "maxLength": 1000
+                          },
+                          "attachments": {
+                            "type": "array",
+                            "items": {
+                              "type": "string",
+                              "format": "uri"
+                            },
+                            "maxItems": 5
+                          },
+                          "createdAt": {
+                            "type": "string",
+                            "format": "date-time"
+                          },
+                          "updatedAt": {
+                            "type": "string",
+                            "format": "date-time"
+                          }
+                        },
+                        "required": [
+                          "id",
+                          "dogId",
+                          "type",
+                          "date",
+                          "veterinarian",
+                          "clinic",
+                          "description",
+                          "createdAt",
+                          "updatedAt"
+                        ]
+                      }
+                    },
+                    "pagination": {
+                      "type": "object",
+                      "properties": {
+                        "page": {
+                          "type": "integer"
+                        },
+                        "limit": {
+                          "type": "integer"
+                        },
+                        "total": {
+                          "type": "integer"
+                        },
+                        "totalPages": {
+                          "type": "integer"
+                        }
+                      },
+                      "required": [
+                        "page",
+                        "limit",
+                        "total",
+                        "totalPages"
+                      ]
+                    }
+                  },
+                  "required": [
+                    "data",
+                    "pagination"
+                  ]
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "summary": "Create health record",
+        "description": "Add a new health record for a dog",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "dogId": {
+                    "type": "string",
+                    "format": "uuid"
+                  },
+                  "type": {
+                    "type": "string",
+                    "enum": [
+                      "vaccination",
+                      "checkup",
+                      "treatment",
+                      "surgery",
+                      "emergency",
+                      "dental",
+                      "grooming"
+                    ]
+                  },
+                  "date": {
+                    "type": "string",
+                    "format": "date"
+                  },
+                  "veterinarian": {
+                    "type": "string",
+                    "minLength": 1,
+                    "maxLength": 100
+                  },
+                  "clinic": {
+                    "type": "string",
+                    "minLength": 1,
+                    "maxLength": 200
+                  },
+                  "description": {
+                    "type": "string",
+                    "minLength": 1,
+                    "maxLength": 1000
+                  },
+                  "medications": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "name": {
+                          "type": "string",
+                          "minLength": 1,
+                          "maxLength": 100
+                        },
+                        "dosage": {
+                          "type": "string",
+                          "minLength": 1,
+                          "maxLength": 50
+                        },
+                        "frequency": {
+                          "type": "string",
+                          "minLength": 1,
+                          "maxLength": 100
+                        }
+                      },
+                      "required": [
+                        "name",
+                        "dosage",
+                        "frequency"
+                      ]
+                    }
+                  },
+                  "cost": {
+                    "type": "number",
+                    "minimum": 0
+                  },
+                  "followUpDate": {
+                    "type": "string",
+                    "format": "date"
+                  },
+                  "notes": {
+                    "type": "string",
+                    "maxLength": 1000
+                  },
+                  "attachments": {
+                    "type": "array",
+                    "items": {
+                      "type": "string",
+                      "format": "uri"
+                    },
+                    "maxItems": 5
+                  }
+                },
+                "required": [
+                  "dogId",
+                  "type",
+                  "date",
+                  "veterinarian",
+                  "clinic",
+                  "description"
+                ]
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Health record created successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "string",
+                      "format": "uuid"
+                    },
+                    "dogId": {
+                      "type": "string",
+                      "format": "uuid"
+                    },
+                    "type": {
+                      "type": "string",
+                      "enum": [
+                        "vaccination",
+                        "checkup",
+                        "treatment",
+                        "surgery",
+                        "emergency",
+                        "dental",
+                        "grooming"
+                      ]
+                    },
+                    "date": {
+                      "type": "string",
+                      "format": "date"
+                    },
+                    "veterinarian": {
+                      "type": "string",
+                      "minLength": 1,
+                      "maxLength": 100
+                    },
+                    "clinic": {
+                      "type": "string",
+                      "minLength": 1,
+                      "maxLength": 200
+                    },
+                    "description": {
+                      "type": "string",
+                      "minLength": 1,
+                      "maxLength": 1000
+                    },
+                    "medications": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "name": {
+                            "type": "string",
+                            "minLength": 1,
+                            "maxLength": 100
+                          },
+                          "dosage": {
+                            "type": "string",
+                            "minLength": 1,
+                            "maxLength": 50
+                          },
+                          "frequency": {
+                            "type": "string",
+                            "minLength": 1,
+                            "maxLength": 100
+                          }
+                        },
+                        "required": [
+                          "name",
+                          "dosage",
+                          "frequency"
+                        ]
+                      }
+                    },
+                    "cost": {
+                      "type": "number",
+                      "minimum": 0
+                    },
+                    "followUpDate": {
+                      "type": "string",
+                      "format": "date"
+                    },
+                    "notes": {
+                      "type": "string",
+                      "maxLength": 1000
+                    },
+                    "attachments": {
+                      "type": "array",
+                      "items": {
+                        "type": "string",
+                        "format": "uri"
+                      },
+                      "maxItems": 5
+                    },
+                    "createdAt": {
+                      "type": "string",
+                      "format": "date-time"
+                    },
+                    "updatedAt": {
+                      "type": "string",
+                      "format": "date-time"
+                    }
+                  },
+                  "required": [
+                    "id",
+                    "dogId",
+                    "type",
+                    "date",
+                    "veterinarian",
+                    "clinic",
+                    "description",
+                    "createdAt",
+                    "updatedAt"
+                  ]
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid input data",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string"
+                    },
+                    "message": {
+                      "type": "string"
+                    },
+                    "details": {
+                      "nullable": true
+                    }
+                  },
+                  "required": [
+                    "error",
+                    "message"
+                  ]
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Dog not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string"
+                    },
+                    "message": {
+                      "type": "string"
+                    },
+                    "details": {
+                      "nullable": true
+                    }
+                  },
+                  "required": [
+                    "error",
+                    "message"
+                  ]
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/health/records/{id}": {
+      "get": {
+        "summary": "Get health record",
+        "description": "Retrieve a specific health record by ID",
+        "parameters": [
+          {
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            },
+            "required": true,
+            "name": "id",
+            "in": "path"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Health record details",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "string",
+                      "format": "uuid"
+                    },
+                    "dogId": {
+                      "type": "string",
+                      "format": "uuid"
+                    },
+                    "type": {
+                      "type": "string",
+                      "enum": [
+                        "vaccination",
+                        "checkup",
+                        "treatment",
+                        "surgery",
+                        "emergency",
+                        "dental",
+                        "grooming"
+                      ]
+                    },
+                    "date": {
+                      "type": "string",
+                      "format": "date"
+                    },
+                    "veterinarian": {
+                      "type": "string",
+                      "minLength": 1,
+                      "maxLength": 100
+                    },
+                    "clinic": {
+                      "type": "string",
+                      "minLength": 1,
+                      "maxLength": 200
+                    },
+                    "description": {
+                      "type": "string",
+                      "minLength": 1,
+                      "maxLength": 1000
+                    },
+                    "medications": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "name": {
+                            "type": "string",
+                            "minLength": 1,
+                            "maxLength": 100
+                          },
+                          "dosage": {
+                            "type": "string",
+                            "minLength": 1,
+                            "maxLength": 50
+                          },
+                          "frequency": {
+                            "type": "string",
+                            "minLength": 1,
+                            "maxLength": 100
+                          }
+                        },
+                        "required": [
+                          "name",
+                          "dosage",
+                          "frequency"
+                        ]
+                      }
+                    },
+                    "cost": {
+                      "type": "number",
+                      "minimum": 0
+                    },
+                    "followUpDate": {
+                      "type": "string",
+                      "format": "date"
+                    },
+                    "notes": {
+                      "type": "string",
+                      "maxLength": 1000
+                    },
+                    "attachments": {
+                      "type": "array",
+                      "items": {
+                        "type": "string",
+                        "format": "uri"
+                      },
+                      "maxItems": 5
+                    },
+                    "createdAt": {
+                      "type": "string",
+                      "format": "date-time"
+                    },
+                    "updatedAt": {
+                      "type": "string",
+                      "format": "date-time"
+                    }
+                  },
+                  "required": [
+                    "id",
+                    "dogId",
+                    "type",
+                    "date",
+                    "veterinarian",
+                    "clinic",
+                    "description",
+                    "createdAt",
+                    "updatedAt"
+                  ]
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Health record not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string"
+                    },
+                    "message": {
+                      "type": "string"
+                    },
+                    "details": {
+                      "nullable": true
+                    }
+                  },
+                  "required": [
+                    "error",
+                    "message"
+                  ]
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/health/dogs/{dogId}/vaccination-history": {
+      "get": {
+        "summary": "Get dog vaccination history",
+        "description": "Retrieve vaccination history for a specific dog",
+        "parameters": [
+          {
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            },
+            "required": true,
+            "name": "dogId",
+            "in": "path"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Dog vaccination history",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "dogId": {
+                      "type": "string",
+                      "format": "uuid"
+                    },
+                    "vaccinations": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "id": {
+                            "type": "string",
+                            "format": "uuid"
+                          },
+                          "dogId": {
+                            "type": "string",
+                            "format": "uuid"
+                          },
+                          "type": {
+                            "type": "string",
+                            "enum": [
+                              "vaccination",
+                              "checkup",
+                              "treatment",
+                              "surgery",
+                              "emergency",
+                              "dental",
+                              "grooming"
+                            ]
+                          },
+                          "date": {
+                            "type": "string",
+                            "format": "date"
+                          },
+                          "veterinarian": {
+                            "type": "string",
+                            "minLength": 1,
+                            "maxLength": 100
+                          },
+                          "clinic": {
+                            "type": "string",
+                            "minLength": 1,
+                            "maxLength": 200
+                          },
+                          "description": {
+                            "type": "string",
+                            "minLength": 1,
+                            "maxLength": 1000
+                          },
+                          "medications": {
+                            "type": "array",
+                            "items": {
+                              "type": "object",
+                              "properties": {
+                                "name": {
+                                  "type": "string",
+                                  "minLength": 1,
+                                  "maxLength": 100
+                                },
+                                "dosage": {
+                                  "type": "string",
+                                  "minLength": 1,
+                                  "maxLength": 50
+                                },
+                                "frequency": {
+                                  "type": "string",
+                                  "minLength": 1,
+                                  "maxLength": 100
+                                }
+                              },
+                              "required": [
+                                "name",
+                                "dosage",
+                                "frequency"
+                              ]
+                            }
+                          },
+                          "cost": {
+                            "type": "number",
+                            "minimum": 0
+                          },
+                          "followUpDate": {
+                            "type": "string",
+                            "format": "date"
+                          },
+                          "notes": {
+                            "type": "string",
+                            "maxLength": 1000
+                          },
+                          "attachments": {
+                            "type": "array",
+                            "items": {
+                              "type": "string",
+                              "format": "uri"
+                            },
+                            "maxItems": 5
+                          },
+                          "createdAt": {
+                            "type": "string",
+                            "format": "date-time"
+                          },
+                          "updatedAt": {
+                            "type": "string",
+                            "format": "date-time"
+                          }
+                        },
+                        "required": [
+                          "id",
+                          "dogId",
+                          "type",
+                          "date",
+                          "veterinarian",
+                          "clinic",
+                          "description",
+                          "createdAt",
+                          "updatedAt"
+                        ]
+                      }
+                    },
+                    "upToDate": {
+                      "type": "boolean"
+                    },
+                    "nextDue": {
+                      "type": "string",
+                      "format": "date"
+                    }
+                  },
+                  "required": [
+                    "dogId",
+                    "vaccinations",
+                    "upToDate"
+                  ]
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Dog not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string"
+                    },
+                    "message": {
+                      "type": "string"
+                    },
+                    "details": {
+                      "nullable": true
+                    }
+                  },
+                  "required": [
+                    "error",
+                    "message"
+                  ]
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/health/veterinarians": {
+      "get": {
+        "summary": "Get veterinarians",
+        "description": "Retrieve a list of veterinarians and their clinics from health records",
+        "responses": {
+          "200": {
+            "description": "List of veterinarians",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "veterinarians": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "name": {
+                            "type": "string"
+                          },
+                          "clinic": {
+                            "type": "string"
+                          },
+                          "recordCount": {
+                            "type": "integer"
+                          },
+                          "specialties": {
+                            "type": "array",
+                            "items": {
+                              "type": "string"
+                            }
+                          }
+                        },
+                        "required": [
+                          "name",
+                          "clinic",
+                          "recordCount",
+                          "specialties"
+                        ]
+                      }
+                    }
+                  },
+                  "required": [
+                    "veterinarians"
+                  ]
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/training/records": {
+      "get": {
+        "summary": "List training records",
+        "description": "Retrieve training records with optional filtering",
+        "parameters": [
+          {
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            },
+            "required": false,
+            "name": "dogId",
+            "in": "query"
+          },
+          {
+            "schema": {
+              "type": "string",
+              "enum": [
+                "basic-obedience",
+                "advanced-obedience",
+                "agility",
+                "therapy",
+                "service",
+                "behavioral",
+                "socialization"
+              ]
+            },
+            "required": false,
+            "name": "type",
+            "in": "query"
+          },
+          {
+            "schema": {
+              "type": "string"
+            },
+            "required": false,
+            "name": "trainer",
+            "in": "query"
+          },
+          {
+            "schema": {
+              "type": "string",
+              "enum": [
+                "in-progress",
+                "completed",
+                "discontinued"
+              ]
+            },
+            "required": false,
+            "name": "status",
+            "in": "query"
+          },
+          {
+            "schema": {
+              "type": "string",
+              "enum": [
+                "poor",
+                "fair",
+                "good",
+                "excellent"
+              ]
+            },
+            "required": false,
+            "name": "progress",
+            "in": "query"
+          },
+          {
+            "schema": {
+              "type": "integer",
+              "minimum": 0,
+              "exclusiveMinimum": true,
+              "default": 1
+            },
+            "required": false,
+            "name": "page",
+            "in": "query"
+          },
+          {
+            "schema": {
+              "type": "integer",
+              "minimum": 0,
+              "exclusiveMinimum": true,
+              "maximum": 100,
+              "default": 10
+            },
+            "required": false,
+            "name": "limit",
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "List of training records",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "data": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "id": {
+                            "type": "string",
+                            "format": "uuid"
+                          },
+                          "dogId": {
+                            "type": "string",
+                            "format": "uuid"
+                          },
+                          "type": {
+                            "type": "string",
+                            "enum": [
+                              "basic-obedience",
+                              "advanced-obedience",
+                              "agility",
+                              "therapy",
+                              "service",
+                              "behavioral",
+                              "socialization"
+                            ]
+                          },
+                          "trainer": {
+                            "type": "string",
+                            "minLength": 1,
+                            "maxLength": 100
+                          },
+                          "facility": {
+                            "type": "string",
+                            "minLength": 1,
+                            "maxLength": 200
+                          },
+                          "startDate": {
+                            "type": "string",
+                            "format": "date"
+                          },
+                          "endDate": {
+                            "type": "string",
+                            "format": "date"
+                          },
+                          "status": {
+                            "type": "string",
+                            "enum": [
+                              "in-progress",
+                              "completed",
+                              "discontinued"
+                            ]
+                          },
+                          "skills": {
+                            "type": "array",
+                            "items": {
+                              "type": "string",
+                              "minLength": 1,
+                              "maxLength": 100
+                            },
+                            "maxItems": 20
+                          },
+                          "progress": {
+                            "type": "string",
+                            "enum": [
+                              "poor",
+                              "fair",
+                              "good",
+                              "excellent"
+                            ]
+                          },
+                          "cost": {
+                            "type": "number",
+                            "minimum": 0
+                          },
+                          "notes": {
+                            "type": "string",
+                            "maxLength": 1000
+                          },
+                          "certificates": {
+                            "type": "array",
+                            "items": {
+                              "type": "string",
+                              "format": "uri"
+                            },
+                            "maxItems": 5
+                          },
+                          "createdAt": {
+                            "type": "string",
+                            "format": "date-time"
+                          },
+                          "updatedAt": {
+                            "type": "string",
+                            "format": "date-time"
+                          }
+                        },
+                        "required": [
+                          "id",
+                          "dogId",
+                          "type",
+                          "trainer",
+                          "startDate",
+                          "status",
+                          "skills",
+                          "progress",
+                          "createdAt",
+                          "updatedAt"
+                        ]
+                      }
+                    },
+                    "pagination": {
+                      "type": "object",
+                      "properties": {
+                        "page": {
+                          "type": "integer"
+                        },
+                        "limit": {
+                          "type": "integer"
+                        },
+                        "total": {
+                          "type": "integer"
+                        },
+                        "totalPages": {
+                          "type": "integer"
+                        }
+                      },
+                      "required": [
+                        "page",
+                        "limit",
+                        "total",
+                        "totalPages"
+                      ]
+                    }
+                  },
+                  "required": [
+                    "data",
+                    "pagination"
+                  ]
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "summary": "Create training record",
+        "description": "Add a new training record for a dog",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "dogId": {
+                    "type": "string",
+                    "format": "uuid"
+                  },
+                  "type": {
+                    "type": "string",
+                    "enum": [
+                      "basic-obedience",
+                      "advanced-obedience",
+                      "agility",
+                      "therapy",
+                      "service",
+                      "behavioral",
+                      "socialization"
+                    ]
+                  },
+                  "trainer": {
+                    "type": "string",
+                    "minLength": 1,
+                    "maxLength": 100
+                  },
+                  "facility": {
+                    "type": "string",
+                    "minLength": 1,
+                    "maxLength": 200
+                  },
+                  "startDate": {
+                    "type": "string",
+                    "format": "date"
+                  },
+                  "endDate": {
+                    "type": "string",
+                    "format": "date"
+                  },
+                  "status": {
+                    "type": "string",
+                    "enum": [
+                      "in-progress",
+                      "completed",
+                      "discontinued"
+                    ]
+                  },
+                  "skills": {
+                    "type": "array",
+                    "items": {
+                      "type": "string",
+                      "minLength": 1,
+                      "maxLength": 100
+                    },
+                    "maxItems": 20
+                  },
+                  "progress": {
+                    "type": "string",
+                    "enum": [
+                      "poor",
+                      "fair",
+                      "good",
+                      "excellent"
+                    ]
+                  },
+                  "cost": {
+                    "type": "number",
+                    "minimum": 0
+                  },
+                  "notes": {
+                    "type": "string",
+                    "maxLength": 1000
+                  },
+                  "certificates": {
+                    "type": "array",
+                    "items": {
+                      "type": "string",
+                      "format": "uri"
+                    },
+                    "maxItems": 5
+                  }
+                },
+                "required": [
+                  "dogId",
+                  "type",
+                  "trainer",
+                  "startDate",
+                  "status",
+                  "skills",
+                  "progress"
+                ]
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Training record created successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "string",
+                      "format": "uuid"
+                    },
+                    "dogId": {
+                      "type": "string",
+                      "format": "uuid"
+                    },
+                    "type": {
+                      "type": "string",
+                      "enum": [
+                        "basic-obedience",
+                        "advanced-obedience",
+                        "agility",
+                        "therapy",
+                        "service",
+                        "behavioral",
+                        "socialization"
+                      ]
+                    },
+                    "trainer": {
+                      "type": "string",
+                      "minLength": 1,
+                      "maxLength": 100
+                    },
+                    "facility": {
+                      "type": "string",
+                      "minLength": 1,
+                      "maxLength": 200
+                    },
+                    "startDate": {
+                      "type": "string",
+                      "format": "date"
+                    },
+                    "endDate": {
+                      "type": "string",
+                      "format": "date"
+                    },
+                    "status": {
+                      "type": "string",
+                      "enum": [
+                        "in-progress",
+                        "completed",
+                        "discontinued"
+                      ]
+                    },
+                    "skills": {
+                      "type": "array",
+                      "items": {
+                        "type": "string",
+                        "minLength": 1,
+                        "maxLength": 100
+                      },
+                      "maxItems": 20
+                    },
+                    "progress": {
+                      "type": "string",
+                      "enum": [
+                        "poor",
+                        "fair",
+                        "good",
+                        "excellent"
+                      ]
+                    },
+                    "cost": {
+                      "type": "number",
+                      "minimum": 0
+                    },
+                    "notes": {
+                      "type": "string",
+                      "maxLength": 1000
+                    },
+                    "certificates": {
+                      "type": "array",
+                      "items": {
+                        "type": "string",
+                        "format": "uri"
+                      },
+                      "maxItems": 5
+                    },
+                    "createdAt": {
+                      "type": "string",
+                      "format": "date-time"
+                    },
+                    "updatedAt": {
+                      "type": "string",
+                      "format": "date-time"
+                    }
+                  },
+                  "required": [
+                    "id",
+                    "dogId",
+                    "type",
+                    "trainer",
+                    "startDate",
+                    "status",
+                    "skills",
+                    "progress",
+                    "createdAt",
+                    "updatedAt"
+                  ]
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid input data",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string"
+                    },
+                    "message": {
+                      "type": "string"
+                    },
+                    "details": {
+                      "nullable": true
+                    }
+                  },
+                  "required": [
+                    "error",
+                    "message"
+                  ]
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Dog not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string"
+                    },
+                    "message": {
+                      "type": "string"
+                    },
+                    "details": {
+                      "nullable": true
+                    }
+                  },
+                  "required": [
+                    "error",
+                    "message"
+                  ]
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/training/records/{id}": {
+      "get": {
+        "summary": "Get training record",
+        "description": "Retrieve a specific training record by ID",
+        "parameters": [
+          {
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            },
+            "required": true,
+            "name": "id",
+            "in": "path"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Training record details",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "string",
+                      "format": "uuid"
+                    },
+                    "dogId": {
+                      "type": "string",
+                      "format": "uuid"
+                    },
+                    "type": {
+                      "type": "string",
+                      "enum": [
+                        "basic-obedience",
+                        "advanced-obedience",
+                        "agility",
+                        "therapy",
+                        "service",
+                        "behavioral",
+                        "socialization"
+                      ]
+                    },
+                    "trainer": {
+                      "type": "string",
+                      "minLength": 1,
+                      "maxLength": 100
+                    },
+                    "facility": {
+                      "type": "string",
+                      "minLength": 1,
+                      "maxLength": 200
+                    },
+                    "startDate": {
+                      "type": "string",
+                      "format": "date"
+                    },
+                    "endDate": {
+                      "type": "string",
+                      "format": "date"
+                    },
+                    "status": {
+                      "type": "string",
+                      "enum": [
+                        "in-progress",
+                        "completed",
+                        "discontinued"
+                      ]
+                    },
+                    "skills": {
+                      "type": "array",
+                      "items": {
+                        "type": "string",
+                        "minLength": 1,
+                        "maxLength": 100
+                      },
+                      "maxItems": 20
+                    },
+                    "progress": {
+                      "type": "string",
+                      "enum": [
+                        "poor",
+                        "fair",
+                        "good",
+                        "excellent"
+                      ]
+                    },
+                    "cost": {
+                      "type": "number",
+                      "minimum": 0
+                    },
+                    "notes": {
+                      "type": "string",
+                      "maxLength": 1000
+                    },
+                    "certificates": {
+                      "type": "array",
+                      "items": {
+                        "type": "string",
+                        "format": "uri"
+                      },
+                      "maxItems": 5
+                    },
+                    "createdAt": {
+                      "type": "string",
+                      "format": "date-time"
+                    },
+                    "updatedAt": {
+                      "type": "string",
+                      "format": "date-time"
+                    }
+                  },
+                  "required": [
+                    "id",
+                    "dogId",
+                    "type",
+                    "trainer",
+                    "startDate",
+                    "status",
+                    "skills",
+                    "progress",
+                    "createdAt",
+                    "updatedAt"
+                  ]
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Training record not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string"
+                    },
+                    "message": {
+                      "type": "string"
+                    },
+                    "details": {
+                      "nullable": true
+                    }
+                  },
+                  "required": [
+                    "error",
+                    "message"
+                  ]
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "summary": "Update training record",
+        "description": "Update an existing training record",
+        "parameters": [
+          {
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            },
+            "required": true,
+            "name": "id",
+            "in": "path"
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "status": {
+                    "type": "string",
+                    "enum": [
+                      "in-progress",
+                      "completed",
+                      "discontinued"
+                    ]
+                  },
+                  "progress": {
+                    "type": "string",
+                    "enum": [
+                      "poor",
+                      "fair",
+                      "good",
+                      "excellent"
+                    ]
+                  },
+                  "endDate": {
+                    "type": "string",
+                    "format": "date"
+                  },
+                  "skills": {
+                    "type": "array",
+                    "items": {
+                      "type": "string",
+                      "minLength": 1,
+                      "maxLength": 100
+                    },
+                    "maxItems": 20
+                  },
+                  "notes": {
+                    "type": "string",
+                    "maxLength": 1000
+                  },
+                  "certificates": {
+                    "type": "array",
+                    "items": {
+                      "type": "string",
+                      "format": "uri"
+                    },
+                    "maxItems": 5
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Training record updated successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "string",
+                      "format": "uuid"
+                    },
+                    "dogId": {
+                      "type": "string",
+                      "format": "uuid"
+                    },
+                    "type": {
+                      "type": "string",
+                      "enum": [
+                        "basic-obedience",
+                        "advanced-obedience",
+                        "agility",
+                        "therapy",
+                        "service",
+                        "behavioral",
+                        "socialization"
+                      ]
+                    },
+                    "trainer": {
+                      "type": "string",
+                      "minLength": 1,
+                      "maxLength": 100
+                    },
+                    "facility": {
+                      "type": "string",
+                      "minLength": 1,
+                      "maxLength": 200
+                    },
+                    "startDate": {
+                      "type": "string",
+                      "format": "date"
+                    },
+                    "endDate": {
+                      "type": "string",
+                      "format": "date"
+                    },
+                    "status": {
+                      "type": "string",
+                      "enum": [
+                        "in-progress",
+                        "completed",
+                        "discontinued"
+                      ]
+                    },
+                    "skills": {
+                      "type": "array",
+                      "items": {
+                        "type": "string",
+                        "minLength": 1,
+                        "maxLength": 100
+                      },
+                      "maxItems": 20
+                    },
+                    "progress": {
+                      "type": "string",
+                      "enum": [
+                        "poor",
+                        "fair",
+                        "good",
+                        "excellent"
+                      ]
+                    },
+                    "cost": {
+                      "type": "number",
+                      "minimum": 0
+                    },
+                    "notes": {
+                      "type": "string",
+                      "maxLength": 1000
+                    },
+                    "certificates": {
+                      "type": "array",
+                      "items": {
+                        "type": "string",
+                        "format": "uri"
+                      },
+                      "maxItems": 5
+                    },
+                    "createdAt": {
+                      "type": "string",
+                      "format": "date-time"
+                    },
+                    "updatedAt": {
+                      "type": "string",
+                      "format": "date-time"
+                    }
+                  },
+                  "required": [
+                    "id",
+                    "dogId",
+                    "type",
+                    "trainer",
+                    "startDate",
+                    "status",
+                    "skills",
+                    "progress",
+                    "createdAt",
+                    "updatedAt"
+                  ]
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Training record not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string"
+                    },
+                    "message": {
+                      "type": "string"
+                    },
+                    "details": {
+                      "nullable": true
+                    }
+                  },
+                  "required": [
+                    "error",
+                    "message"
+                  ]
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/training/dogs/{dogId}/progress": {
+      "get": {
+        "summary": "Get dog training progress",
+        "description": "Retrieve all training records and progress for a specific dog",
+        "parameters": [
+          {
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            },
+            "required": true,
+            "name": "dogId",
+            "in": "path"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Dog training progress summary",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "dogId": {
+                      "type": "string",
+                      "format": "uuid"
+                    },
+                    "totalTrainings": {
+                      "type": "integer"
+                    },
+                    "completedTrainings": {
+                      "type": "integer"
+                    },
+                    "inProgressTrainings": {
+                      "type": "integer"
+                    },
+                    "overallProgress": {
+                      "type": "string",
+                      "enum": [
+                        "poor",
+                        "fair",
+                        "good",
+                        "excellent"
+                      ]
+                    },
+                    "skills": {
+                      "type": "array",
+                      "items": {
+                        "type": "string"
+                      }
+                    },
+                    "trainingRecords": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "id": {
+                            "type": "string",
+                            "format": "uuid"
+                          },
+                          "dogId": {
+                            "type": "string",
+                            "format": "uuid"
+                          },
+                          "type": {
+                            "type": "string",
+                            "enum": [
+                              "basic-obedience",
+                              "advanced-obedience",
+                              "agility",
+                              "therapy",
+                              "service",
+                              "behavioral",
+                              "socialization"
+                            ]
+                          },
+                          "trainer": {
+                            "type": "string",
+                            "minLength": 1,
+                            "maxLength": 100
+                          },
+                          "facility": {
+                            "type": "string",
+                            "minLength": 1,
+                            "maxLength": 200
+                          },
+                          "startDate": {
+                            "type": "string",
+                            "format": "date"
+                          },
+                          "endDate": {
+                            "type": "string",
+                            "format": "date"
+                          },
+                          "status": {
+                            "type": "string",
+                            "enum": [
+                              "in-progress",
+                              "completed",
+                              "discontinued"
+                            ]
+                          },
+                          "skills": {
+                            "type": "array",
+                            "items": {
+                              "type": "string",
+                              "minLength": 1,
+                              "maxLength": 100
+                            },
+                            "maxItems": 20
+                          },
+                          "progress": {
+                            "type": "string",
+                            "enum": [
+                              "poor",
+                              "fair",
+                              "good",
+                              "excellent"
+                            ]
+                          },
+                          "cost": {
+                            "type": "number",
+                            "minimum": 0
+                          },
+                          "notes": {
+                            "type": "string",
+                            "maxLength": 1000
+                          },
+                          "certificates": {
+                            "type": "array",
+                            "items": {
+                              "type": "string",
+                              "format": "uri"
+                            },
+                            "maxItems": 5
+                          },
+                          "createdAt": {
+                            "type": "string",
+                            "format": "date-time"
+                          },
+                          "updatedAt": {
+                            "type": "string",
+                            "format": "date-time"
+                          }
+                        },
+                        "required": [
+                          "id",
+                          "dogId",
+                          "type",
+                          "trainer",
+                          "startDate",
+                          "status",
+                          "skills",
+                          "progress",
+                          "createdAt",
+                          "updatedAt"
+                        ]
+                      }
+                    }
+                  },
+                  "required": [
+                    "dogId",
+                    "totalTrainings",
+                    "completedTrainings",
+                    "inProgressTrainings",
+                    "overallProgress",
+                    "skills",
+                    "trainingRecords"
+                  ]
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Dog not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string"
+                    },
+                    "message": {
+                      "type": "string"
+                    },
+                    "details": {
+                      "nullable": true
+                    }
+                  },
+                  "required": [
+                    "error",
+                    "message"
+                  ]
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/training/trainers": {
+      "get": {
+        "summary": "Get trainers",
+        "description": "Retrieve a list of trainers and their specialties",
+        "responses": {
+          "200": {
+            "description": "List of trainers",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "trainers": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "name": {
+                            "type": "string"
+                          },
+                          "facility": {
+                            "type": "string"
+                          },
+                          "specialties": {
+                            "type": "array",
+                            "items": {
+                              "type": "string"
+                            }
+                          },
+                          "recordCount": {
+                            "type": "integer"
+                          },
+                          "averageProgress": {
+                            "type": "string",
+                            "enum": [
+                              "poor",
+                              "fair",
+                              "good",
+                              "excellent"
+                            ]
+                          }
+                        },
+                        "required": [
+                          "name",
+                          "specialties",
+                          "recordCount",
+                          "averageProgress"
+                        ]
+                      }
+                    }
+                  },
+                  "required": [
+                    "trainers"
+                  ]
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "x-generated-at": "2025-08-21T14:52:59.570Z",
+  "x-generated-by": "dog-api-ci"
+}
