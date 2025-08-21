@@ -12,6 +12,7 @@ let trainingRecords = [...mockTrainingRecords]
 const listTrainingRecordsRoute = createRoute({
   method: 'get',
   path: '/records',
+  tags: ['Training'],
   summary: 'List training records',
   description: 'Retrieve training records with optional filtering',
   request: {
@@ -89,6 +90,7 @@ trainingRoutes.openapi(listTrainingRecordsRoute, (c) => {
 const createTrainingRecordRoute = createRoute({
   method: 'post',
   path: '/records',
+  tags: ['Training'],
   summary: 'Create training record',
   description: 'Add a new training record for a dog',
   request: {
@@ -156,6 +158,7 @@ trainingRoutes.openapi(createTrainingRecordRoute, (c) => {
 const getTrainingRecordRoute = createRoute({
   method: 'get',
   path: '/records/{id}',
+  tags: ['Training'],
   summary: 'Get training record',
   description: 'Retrieve a specific training record by ID',
   request: {
@@ -201,6 +204,7 @@ trainingRoutes.openapi(getTrainingRecordRoute, (c) => {
 const updateTrainingRecordRoute = createRoute({
   method: 'put',
   path: '/records/{id}',
+  tags: ['Training'],
   summary: 'Update training record',
   description: 'Update an existing training record',
   request: {
@@ -269,6 +273,7 @@ trainingRoutes.openapi(updateTrainingRecordRoute, (c) => {
 const getDogTrainingProgressRoute = createRoute({
   method: 'get',
   path: '/dogs/{dogId}/progress',
+  tags: ['Training'],
   summary: 'Get dog training progress',
   description: 'Retrieve all training records and progress for a specific dog',
   request: {
@@ -362,6 +367,7 @@ trainingRoutes.openapi(getDogTrainingProgressRoute, (c) => {
 const getTrainersRoute = createRoute({
   method: 'get',
   path: '/trainers',
+  tags: ['Training'],
   summary: 'Get trainers',
   description: 'Retrieve a list of trainers and their specialties',
   responses: {

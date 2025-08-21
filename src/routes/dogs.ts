@@ -12,6 +12,7 @@ let dogs = [...mockDogs]
 const listDogsRoute = createRoute({
   method: 'get',
   path: '/',
+  tags: ['Dogs'],
   summary: 'List all dogs',
   description: 'Retrieve a paginated list of dogs with optional filtering',
   request: {
@@ -83,6 +84,7 @@ dogsRoutes.openapi(listDogsRoute, (c) => {
 const getDogRoute = createRoute({
   method: 'get',
   path: '/{id}',
+  tags: ['Dogs'],
   summary: 'Get dog by ID',
   description: 'Retrieve a specific dog by its ID',
   request: {
@@ -128,6 +130,7 @@ dogsRoutes.openapi(getDogRoute, (c) => {
 const createDogRoute = createRoute({
   method: 'post',
   path: '/',
+  tags: ['Dogs'],
   summary: 'Create a new dog',
   description: 'Add a new dog to the database',
   request: {
@@ -178,6 +181,7 @@ dogsRoutes.openapi(createDogRoute, (c) => {
 const updateDogRoute = createRoute({
   method: 'put',
   path: '/{id}',
+  tags: ['Dogs'],
   summary: 'Update dog',
   description: 'Update an existing dog\'s information',
   request: {
@@ -239,6 +243,7 @@ dogsRoutes.openapi(updateDogRoute, (c) => {
 const deleteDogRoute = createRoute({
   method: 'delete',
   path: '/{id}',
+  tags: ['Dogs'],
   summary: 'Delete dog',
   description: 'Remove a dog from the database',
   request: {
@@ -281,6 +286,7 @@ dogsRoutes.openapi(deleteDogRoute, (c) => {
 const getDogPhotosRoute = createRoute({
   method: 'get',
   path: '/{id}/photos',
+  tags: ['Dogs'],
   summary: 'Get dog photos',
   description: 'Get all photos for a specific dog',
   request: {

@@ -12,6 +12,7 @@ let healthRecords = [...mockHealthRecords]
 const listHealthRecordsRoute = createRoute({
   method: 'get',
   path: '/records',
+  tags: ['Health'],
   summary: 'List health records',
   description: 'Retrieve health records with optional filtering by dog or record type',
   request: {
@@ -89,6 +90,7 @@ healthRoutes.openapi(listHealthRecordsRoute, (c) => {
 const createHealthRecordRoute = createRoute({
   method: 'post',
   path: '/records',
+  tags: ['Health'],
   summary: 'Create health record',
   description: 'Add a new health record for a dog',
   request: {
@@ -156,6 +158,7 @@ healthRoutes.openapi(createHealthRecordRoute, (c) => {
 const getHealthRecordRoute = createRoute({
   method: 'get',
   path: '/records/{id}',
+  tags: ['Health'],
   summary: 'Get health record',
   description: 'Retrieve a specific health record by ID',
   request: {
@@ -201,6 +204,7 @@ healthRoutes.openapi(getHealthRecordRoute, (c) => {
 const getDogVaccinationHistoryRoute = createRoute({
   method: 'get',
   path: '/dogs/{dogId}/vaccination-history',
+  tags: ['Health'],
   summary: 'Get dog vaccination history',
   description: 'Retrieve vaccination history for a specific dog',
   request: {
@@ -269,6 +273,7 @@ healthRoutes.openapi(getDogVaccinationHistoryRoute, (c) => {
 const getVeterinariansRoute = createRoute({
   method: 'get',
   path: '/veterinarians',
+  tags: ['Health'],
   summary: 'Get veterinarians',
   description: 'Retrieve a list of veterinarians and their clinics from health records',
   responses: {

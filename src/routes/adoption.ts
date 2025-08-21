@@ -12,6 +12,7 @@ let adoptionApplications = [...mockAdoptionApplications]
 const listAdoptionApplicationsRoute = createRoute({
   method: 'get',
   path: '/applications',
+  tags: ['Adoption'],
   summary: 'List adoption applications',
   description: 'Retrieve all adoption applications with optional status filtering',
   request: {
@@ -75,6 +76,7 @@ adoptionRoutes.openapi(listAdoptionApplicationsRoute, (c) => {
 const createAdoptionApplicationRoute = createRoute({
   method: 'post',
   path: '/applications',
+  tags: ['Adoption'],
   summary: 'Submit adoption application',
   description: 'Submit a new adoption application for a dog',
   request: {
@@ -143,6 +145,7 @@ adoptionRoutes.openapi(createAdoptionApplicationRoute, (c) => {
 const getAdoptionApplicationRoute = createRoute({
   method: 'get',
   path: '/applications/{id}',
+  tags: ['Adoption'],
   summary: 'Get adoption application',
   description: 'Retrieve a specific adoption application by ID',
   request: {
@@ -188,6 +191,7 @@ adoptionRoutes.openapi(getAdoptionApplicationRoute, (c) => {
 const updateApplicationStatusRoute = createRoute({
   method: 'put',
   path: '/applications/{id}/status',
+  tags: ['Adoption'],
   summary: 'Update application status',
   description: 'Update the status of an adoption application (approve, reject, etc.)',
   request: {
@@ -253,6 +257,7 @@ adoptionRoutes.openapi(updateApplicationStatusRoute, (c) => {
 const getAvailableDogsRoute = createRoute({
   method: 'get',
   path: '/available',
+  tags: ['Adoption'],
   summary: 'Get available dogs',
   description: 'Retrieve dogs that are available for adoption (no approved applications)',
   request: {
@@ -305,6 +310,7 @@ adoptionRoutes.openapi(getAvailableDogsRoute, (c) => {
 const getAdoptionStatsRoute = createRoute({
   method: 'get',
   path: '/stats',
+  tags: ['Adoption'],
   summary: 'Get adoption statistics',
   description: 'Retrieve statistics about adoptions and applications',
   responses: {
