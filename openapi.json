@@ -3,7 +3,7 @@
   "info": {
     "version": "1.0.0",
     "title": "Dog API",
-    "description": "A comprehensive API for managing dogs, breeds, adoption, health records, and training data"
+    "description": "A comprehensive API for managing dogs, broods, adoption, health records, and training data"
   },
   "components": {
     "schemas": {},
@@ -94,10 +94,7 @@
           {
             "schema": {
               "type": "string",
-              "enum": [
-                "male",
-                "female"
-              ]
+              "enum": ["male", "female"]
             },
             "required": false,
             "name": "gender",
@@ -106,12 +103,7 @@
           {
             "schema": {
               "type": "string",
-              "enum": [
-                "small",
-                "medium",
-                "large",
-                "extra-large"
-              ]
+              "enum": ["small", "medium", "large", "extra-large"]
             },
             "required": false,
             "name": "size",
@@ -190,10 +182,7 @@
                           },
                           "gender": {
                             "type": "string",
-                            "enum": [
-                              "male",
-                              "female"
-                            ]
+                            "enum": ["male", "female"]
                           },
                           "color": {
                             "type": "string",
@@ -202,12 +191,7 @@
                           },
                           "size": {
                             "type": "string",
-                            "enum": [
-                              "small",
-                              "medium",
-                              "large",
-                              "extra-large"
-                            ]
+                            "enum": ["small", "medium", "large", "extra-large"]
                           },
                           "temperament": {
                             "type": "array",
@@ -286,16 +270,10 @@
                           "minimum": 0
                         }
                       },
-                      "required": [
-                        "total",
-                        "totalPages"
-                      ]
+                      "required": ["total", "totalPages"]
                     }
                   },
-                  "required": [
-                    "data",
-                    "pagination"
-                  ]
+                  "required": ["data", "pagination"]
                 }
               }
             }
@@ -334,10 +312,7 @@
                   },
                   "gender": {
                     "type": "string",
-                    "enum": [
-                      "male",
-                      "female"
-                    ]
+                    "enum": ["male", "female"]
                   },
                   "color": {
                     "type": "string",
@@ -346,12 +321,7 @@
                   },
                   "size": {
                     "type": "string",
-                    "enum": [
-                      "small",
-                      "medium",
-                      "large",
-                      "extra-large"
-                    ]
+                    "enum": ["small", "medium", "large", "extra-large"]
                   },
                   "temperament": {
                     "type": "array",
@@ -431,10 +401,7 @@
                     },
                     "gender": {
                       "type": "string",
-                      "enum": [
-                        "male",
-                        "female"
-                      ]
+                      "enum": ["male", "female"]
                     },
                     "color": {
                       "type": "string",
@@ -443,12 +410,7 @@
                     },
                     "size": {
                       "type": "string",
-                      "enum": [
-                        "small",
-                        "medium",
-                        "large",
-                        "extra-large"
-                      ]
+                      "enum": ["small", "medium", "large", "extra-large"]
                     },
                     "temperament": {
                       "type": "array",
@@ -521,10 +483,7 @@
                       "nullable": true
                     }
                   },
-                  "required": [
-                    "error",
-                    "message"
-                  ]
+                  "required": ["error", "message"]
                 }
               }
             }
@@ -582,10 +541,7 @@
                     },
                     "gender": {
                       "type": "string",
-                      "enum": [
-                        "male",
-                        "female"
-                      ]
+                      "enum": ["male", "female"]
                     },
                     "color": {
                       "type": "string",
@@ -594,12 +550,7 @@
                     },
                     "size": {
                       "type": "string",
-                      "enum": [
-                        "small",
-                        "medium",
-                        "large",
-                        "extra-large"
-                      ]
+                      "enum": ["small", "medium", "large", "extra-large"]
                     },
                     "temperament": {
                       "type": "array",
@@ -672,10 +623,7 @@
                       "nullable": true
                     }
                   },
-                  "required": [
-                    "error",
-                    "message"
-                  ]
+                  "required": ["error", "message"]
                 }
               }
             }
@@ -725,10 +673,7 @@
                   },
                   "gender": {
                     "type": "string",
-                    "enum": [
-                      "male",
-                      "female"
-                    ]
+                    "enum": ["male", "female"]
                   },
                   "color": {
                     "type": "string",
@@ -737,12 +682,7 @@
                   },
                   "size": {
                     "type": "string",
-                    "enum": [
-                      "small",
-                      "medium",
-                      "large",
-                      "extra-large"
-                    ]
+                    "enum": ["small", "medium", "large", "extra-large"]
                   },
                   "temperament": {
                     "type": "array",
@@ -809,10 +749,7 @@
                     },
                     "gender": {
                       "type": "string",
-                      "enum": [
-                        "male",
-                        "female"
-                      ]
+                      "enum": ["male", "female"]
                     },
                     "color": {
                       "type": "string",
@@ -821,12 +758,7 @@
                     },
                     "size": {
                       "type": "string",
-                      "enum": [
-                        "small",
-                        "medium",
-                        "large",
-                        "extra-large"
-                      ]
+                      "enum": ["small", "medium", "large", "extra-large"]
                     },
                     "temperament": {
                       "type": "array",
@@ -899,10 +831,7 @@
                       "nullable": true
                     }
                   },
-                  "required": [
-                    "error",
-                    "message"
-                  ]
+                  "required": ["error", "message"]
                 }
               }
             }
@@ -944,10 +873,7 @@
                       "nullable": true
                     }
                   },
-                  "required": [
-                    "error",
-                    "message"
-                  ]
+                  "required": ["error", "message"]
                 }
               }
             }
@@ -990,10 +916,7 @@
                       }
                     }
                   },
-                  "required": [
-                    "dogId",
-                    "photos"
-                  ]
+                  "required": ["dogId", "photos"]
                 }
               }
             }
@@ -1015,10 +938,7 @@
                       "nullable": true
                     }
                   },
-                  "required": [
-                    "error",
-                    "message"
-                  ]
+                  "required": ["error", "message"]
                 }
               }
             }
@@ -1026,10 +946,10 @@
         }
       }
     },
-    "/breeds": {
+    "/broods": {
       "get": {
-        "summary": "List all dog breeds",
-        "description": "Retrieve a list of all available dog breeds with their characteristics",
+        "summary": "List all dog broods",
+        "description": "Retrieve a list of all available dog broods with their characteristics",
         "parameters": [
           {
             "schema": {
@@ -1052,12 +972,7 @@
           {
             "schema": {
               "type": "string",
-              "enum": [
-                "small",
-                "medium",
-                "large",
-                "extra-large"
-              ]
+              "enum": ["small", "medium", "large", "extra-large"]
             },
             "required": false,
             "name": "size",
@@ -1066,12 +981,7 @@
           {
             "schema": {
               "type": "string",
-              "enum": [
-                "low",
-                "moderate",
-                "high",
-                "very-high"
-              ]
+              "enum": ["low", "moderate", "high", "very-high"]
             },
             "required": false,
             "name": "exerciseNeeds",
@@ -1098,7 +1008,7 @@
         ],
         "responses": {
           "200": {
-            "description": "List of dog breeds",
+            "description": "List of dog broods",
             "content": {
               "application/json": {
                 "schema": {
@@ -1135,12 +1045,7 @@
                       },
                       "size": {
                         "type": "string",
-                        "enum": [
-                          "small",
-                          "medium",
-                          "large",
-                          "extra-large"
-                        ]
+                        "enum": ["small", "medium", "large", "extra-large"]
                       },
                       "lifeSpan": {
                         "type": "object",
@@ -1156,10 +1061,7 @@
                             "maximum": 30
                           }
                         },
-                        "required": [
-                          "min",
-                          "max"
-                        ]
+                        "required": ["min", "max"]
                       },
                       "temperament": {
                         "type": "array",
@@ -1170,29 +1072,15 @@
                       },
                       "exerciseNeeds": {
                         "type": "string",
-                        "enum": [
-                          "low",
-                          "moderate",
-                          "high",
-                          "very-high"
-                        ]
+                        "enum": ["low", "moderate", "high", "very-high"]
                       },
                       "groomingNeeds": {
                         "type": "string",
-                        "enum": [
-                          "low",
-                          "moderate",
-                          "high"
-                        ]
+                        "enum": ["low", "moderate", "high"]
                       },
                       "trainability": {
                         "type": "string",
-                        "enum": [
-                          "low",
-                          "moderate",
-                          "high",
-                          "very-high"
-                        ]
+                        "enum": ["low", "moderate", "high", "very-high"]
                       },
                       "goodWithKids": {
                         "type": "boolean"
@@ -1242,7 +1130,7 @@
         }
       }
     },
-    "/breeds/{id}": {
+    "/broods/{id}": {
       "get": {
         "summary": "Get breed by ID",
         "description": "Retrieve detailed information about a specific dog breed",
@@ -1294,12 +1182,7 @@
                     },
                     "size": {
                       "type": "string",
-                      "enum": [
-                        "small",
-                        "medium",
-                        "large",
-                        "extra-large"
-                      ]
+                      "enum": ["small", "medium", "large", "extra-large"]
                     },
                     "lifeSpan": {
                       "type": "object",
@@ -1315,10 +1198,7 @@
                           "maximum": 30
                         }
                       },
-                      "required": [
-                        "min",
-                        "max"
-                      ]
+                      "required": ["min", "max"]
                     },
                     "temperament": {
                       "type": "array",
@@ -1329,29 +1209,15 @@
                     },
                     "exerciseNeeds": {
                       "type": "string",
-                      "enum": [
-                        "low",
-                        "moderate",
-                        "high",
-                        "very-high"
-                      ]
+                      "enum": ["low", "moderate", "high", "very-high"]
                     },
                     "groomingNeeds": {
                       "type": "string",
-                      "enum": [
-                        "low",
-                        "moderate",
-                        "high"
-                      ]
+                      "enum": ["low", "moderate", "high"]
                     },
                     "trainability": {
                       "type": "string",
-                      "enum": [
-                        "low",
-                        "moderate",
-                        "high",
-                        "very-high"
-                      ]
+                      "enum": ["low", "moderate", "high", "very-high"]
                     },
                     "goodWithKids": {
                       "type": "boolean"
@@ -1414,10 +1280,7 @@
                       "nullable": true
                     }
                   },
-                  "required": [
-                    "error",
-                    "message"
-                  ]
+                  "required": ["error", "message"]
                 }
               }
             }
@@ -1425,10 +1288,10 @@
         }
       }
     },
-    "/breeds/search": {
+    "/broods/search": {
       "get": {
-        "summary": "Search breeds by name",
-        "description": "Search for dog breeds by name or partial name match",
+        "summary": "Search broods by name",
+        "description": "Search for dog broods by name or partial name match",
         "parameters": [
           {
             "schema": {
@@ -1455,7 +1318,7 @@
         ],
         "responses": {
           "200": {
-            "description": "Matching breeds",
+            "description": "Matching broods",
             "content": {
               "application/json": {
                 "schema": {
@@ -1492,12 +1355,7 @@
                       },
                       "size": {
                         "type": "string",
-                        "enum": [
-                          "small",
-                          "medium",
-                          "large",
-                          "extra-large"
-                        ]
+                        "enum": ["small", "medium", "large", "extra-large"]
                       },
                       "lifeSpan": {
                         "type": "object",
@@ -1513,10 +1371,7 @@
                             "maximum": 30
                           }
                         },
-                        "required": [
-                          "min",
-                          "max"
-                        ]
+                        "required": ["min", "max"]
                       },
                       "temperament": {
                         "type": "array",
@@ -1527,29 +1382,15 @@
                       },
                       "exerciseNeeds": {
                         "type": "string",
-                        "enum": [
-                          "low",
-                          "moderate",
-                          "high",
-                          "very-high"
-                        ]
+                        "enum": ["low", "moderate", "high", "very-high"]
                       },
                       "groomingNeeds": {
                         "type": "string",
-                        "enum": [
-                          "low",
-                          "moderate",
-                          "high"
-                        ]
+                        "enum": ["low", "moderate", "high"]
                       },
                       "trainability": {
                         "type": "string",
-                        "enum": [
-                          "low",
-                          "moderate",
-                          "high",
-                          "very-high"
-                        ]
+                        "enum": ["low", "moderate", "high", "very-high"]
                       },
                       "goodWithKids": {
                         "type": "boolean"
@@ -1599,7 +1440,7 @@
         }
       }
     },
-    "/breeds/groups": {
+    "/broods/groups": {
       "get": {
         "summary": "Get all breed groups",
         "description": "Retrieve a list of all available dog breed groups",
@@ -1627,17 +1468,11 @@
                             "minimum": 0
                           }
                         },
-                        "required": [
-                          "name",
-                          "description",
-                          "count"
-                        ]
+                        "required": ["name", "description", "count"]
                       }
                     }
                   },
-                  "required": [
-                    "groups"
-                  ]
+                  "required": ["groups"]
                 }
               }
             }
@@ -1653,12 +1488,7 @@
           {
             "schema": {
               "type": "string",
-              "enum": [
-                "pending",
-                "approved",
-                "rejected",
-                "withdrawn"
-              ]
+              "enum": ["pending", "approved", "rejected", "withdrawn"]
             },
             "required": false,
             "name": "status",
@@ -1756,12 +1586,7 @@
                                 "maxLength": 10
                               }
                             },
-                            "required": [
-                              "street",
-                              "city",
-                              "state",
-                              "zipCode"
-                            ]
+                            "required": ["street", "city", "state", "zipCode"]
                           },
                           "housingType": {
                             "type": "string",
@@ -1858,18 +1683,10 @@
                           "type": "integer"
                         }
                       },
-                      "required": [
-                        "page",
-                        "limit",
-                        "total",
-                        "totalPages"
-                      ]
+                      "required": ["page", "limit", "total", "totalPages"]
                     }
                   },
-                  "required": [
-                    "data",
-                    "pagination"
-                  ]
+                  "required": ["data", "pagination"]
                 }
               }
             }
@@ -1927,22 +1744,11 @@
                         "maxLength": 10
                       }
                     },
-                    "required": [
-                      "street",
-                      "city",
-                      "state",
-                      "zipCode"
-                    ]
+                    "required": ["street", "city", "state", "zipCode"]
                   },
                   "housingType": {
                     "type": "string",
-                    "enum": [
-                      "apartment",
-                      "house",
-                      "condo",
-                      "farm",
-                      "other"
-                    ]
+                    "enum": ["apartment", "house", "condo", "farm", "other"]
                   },
                   "hasYard": {
                     "type": "boolean"
@@ -1956,12 +1762,7 @@
                   },
                   "experience": {
                     "type": "string",
-                    "enum": [
-                      "none",
-                      "some",
-                      "experienced",
-                      "very-experienced"
-                    ]
+                    "enum": ["none", "some", "experienced", "very-experienced"]
                   },
                   "workSchedule": {
                     "type": "string",
@@ -2044,22 +1845,11 @@
                           "maxLength": 10
                         }
                       },
-                      "required": [
-                        "street",
-                        "city",
-                        "state",
-                        "zipCode"
-                      ]
+                      "required": ["street", "city", "state", "zipCode"]
                     },
                     "housingType": {
                       "type": "string",
-                      "enum": [
-                        "apartment",
-                        "house",
-                        "condo",
-                        "farm",
-                        "other"
-                      ]
+                      "enum": ["apartment", "house", "condo", "farm", "other"]
                     },
                     "hasYard": {
                       "type": "boolean"
@@ -2091,12 +1881,7 @@
                     },
                     "status": {
                       "type": "string",
-                      "enum": [
-                        "pending",
-                        "approved",
-                        "rejected",
-                        "withdrawn"
-                      ]
+                      "enum": ["pending", "approved", "rejected", "withdrawn"]
                     },
                     "notes": {
                       "type": "string",
@@ -2149,10 +1934,7 @@
                       "nullable": true
                     }
                   },
-                  "required": [
-                    "error",
-                    "message"
-                  ]
+                  "required": ["error", "message"]
                 }
               }
             }
@@ -2174,10 +1956,7 @@
                       "nullable": true
                     }
                   },
-                  "required": [
-                    "error",
-                    "message"
-                  ]
+                  "required": ["error", "message"]
                 }
               }
             }
@@ -2254,22 +2033,11 @@
                           "maxLength": 10
                         }
                       },
-                      "required": [
-                        "street",
-                        "city",
-                        "state",
-                        "zipCode"
-                      ]
+                      "required": ["street", "city", "state", "zipCode"]
                     },
                     "housingType": {
                       "type": "string",
-                      "enum": [
-                        "apartment",
-                        "house",
-                        "condo",
-                        "farm",
-                        "other"
-                      ]
+                      "enum": ["apartment", "house", "condo", "farm", "other"]
                     },
                     "hasYard": {
                       "type": "boolean"
@@ -2301,12 +2069,7 @@
                     },
                     "status": {
                       "type": "string",
-                      "enum": [
-                        "pending",
-                        "approved",
-                        "rejected",
-                        "withdrawn"
-                      ]
+                      "enum": ["pending", "approved", "rejected", "withdrawn"]
                     },
                     "notes": {
                       "type": "string",
@@ -2359,10 +2122,7 @@
                       "nullable": true
                     }
                   },
-                  "required": [
-                    "error",
-                    "message"
-                  ]
+                  "required": ["error", "message"]
                 }
               }
             }
@@ -2393,21 +2153,14 @@
                 "properties": {
                   "status": {
                     "type": "string",
-                    "enum": [
-                      "pending",
-                      "approved",
-                      "rejected",
-                      "withdrawn"
-                    ]
+                    "enum": ["pending", "approved", "rejected", "withdrawn"]
                   },
                   "notes": {
                     "type": "string",
                     "maxLength": 1000
                   }
                 },
-                "required": [
-                  "status"
-                ]
+                "required": ["status"]
               }
             }
           }
@@ -2466,22 +2219,11 @@
                           "maxLength": 10
                         }
                       },
-                      "required": [
-                        "street",
-                        "city",
-                        "state",
-                        "zipCode"
-                      ]
+                      "required": ["street", "city", "state", "zipCode"]
                     },
                     "housingType": {
                       "type": "string",
-                      "enum": [
-                        "apartment",
-                        "house",
-                        "condo",
-                        "farm",
-                        "other"
-                      ]
+                      "enum": ["apartment", "house", "condo", "farm", "other"]
                     },
                     "hasYard": {
                       "type": "boolean"
@@ -2513,12 +2255,7 @@
                     },
                     "status": {
                       "type": "string",
-                      "enum": [
-                        "pending",
-                        "approved",
-                        "rejected",
-                        "withdrawn"
-                      ]
+                      "enum": ["pending", "approved", "rejected", "withdrawn"]
                     },
                     "notes": {
                       "type": "string",
@@ -2571,10 +2308,7 @@
                       "nullable": true
                     }
                   },
-                  "required": [
-                    "error",
-                    "message"
-                  ]
+                  "required": ["error", "message"]
                 }
               }
             }
@@ -2598,12 +2332,7 @@
           {
             "schema": {
               "type": "string",
-              "enum": [
-                "small",
-                "medium",
-                "large",
-                "extra-large"
-              ]
+              "enum": ["small", "medium", "large", "extra-large"]
             },
             "required": false,
             "name": "size",
@@ -2666,10 +2395,7 @@
                       },
                       "gender": {
                         "type": "string",
-                        "enum": [
-                          "male",
-                          "female"
-                        ]
+                        "enum": ["male", "female"]
                       },
                       "color": {
                         "type": "string",
@@ -2678,12 +2404,7 @@
                       },
                       "size": {
                         "type": "string",
-                        "enum": [
-                          "small",
-                          "medium",
-                          "large",
-                          "extra-large"
-                        ]
+                        "enum": ["small", "medium", "large", "extra-large"]
                       },
                       "temperament": {
                         "type": "array",
@@ -2947,11 +2668,7 @@
                                   "maxLength": 100
                                 }
                               },
-                              "required": [
-                                "name",
-                                "dosage",
-                                "frequency"
-                              ]
+                              "required": ["name", "dosage", "frequency"]
                             }
                           },
                           "cost": {
@@ -3012,18 +2729,10 @@
                           "type": "integer"
                         }
                       },
-                      "required": [
-                        "page",
-                        "limit",
-                        "total",
-                        "totalPages"
-                      ]
+                      "required": ["page", "limit", "total", "totalPages"]
                     }
                   },
-                  "required": [
-                    "data",
-                    "pagination"
-                  ]
+                  "required": ["data", "pagination"]
                 }
               }
             }
@@ -3095,11 +2804,7 @@
                           "maxLength": 100
                         }
                       },
-                      "required": [
-                        "name",
-                        "dosage",
-                        "frequency"
-                      ]
+                      "required": ["name", "dosage", "frequency"]
                     }
                   },
                   "cost": {
@@ -3203,11 +2908,7 @@
                             "maxLength": 100
                           }
                         },
-                        "required": [
-                          "name",
-                          "dosage",
-                          "frequency"
-                        ]
+                        "required": ["name", "dosage", "frequency"]
                       }
                     },
                     "cost": {
@@ -3271,10 +2972,7 @@
                       "nullable": true
                     }
                   },
-                  "required": [
-                    "error",
-                    "message"
-                  ]
+                  "required": ["error", "message"]
                 }
               }
             }
@@ -3296,10 +2994,7 @@
                       "nullable": true
                     }
                   },
-                  "required": [
-                    "error",
-                    "message"
-                  ]
+                  "required": ["error", "message"]
                 }
               }
             }
@@ -3390,11 +3085,7 @@
                             "maxLength": 100
                           }
                         },
-                        "required": [
-                          "name",
-                          "dosage",
-                          "frequency"
-                        ]
+                        "required": ["name", "dosage", "frequency"]
                       }
                     },
                     "cost": {
@@ -3458,10 +3149,7 @@
                       "nullable": true
                     }
                   },
-                  "required": [
-                    "error",
-                    "message"
-                  ]
+                  "required": ["error", "message"]
                 }
               }
             }
@@ -3561,11 +3249,7 @@
                                   "maxLength": 100
                                 }
                               },
-                              "required": [
-                                "name",
-                                "dosage",
-                                "frequency"
-                              ]
+                              "required": ["name", "dosage", "frequency"]
                             }
                           },
                           "cost": {
@@ -3618,11 +3302,7 @@
                       "format": "date"
                     }
                   },
-                  "required": [
-                    "dogId",
-                    "vaccinations",
-                    "upToDate"
-                  ]
+                  "required": ["dogId", "vaccinations", "upToDate"]
                 }
               }
             }
@@ -3644,10 +3324,7 @@
                       "nullable": true
                     }
                   },
-                  "required": [
-                    "error",
-                    "message"
-                  ]
+                  "required": ["error", "message"]
                 }
               }
             }
@@ -3697,9 +3374,7 @@
                       }
                     }
                   },
-                  "required": [
-                    "veterinarians"
-                  ]
+                  "required": ["veterinarians"]
                 }
               }
             }
@@ -3749,11 +3424,7 @@
           {
             "schema": {
               "type": "string",
-              "enum": [
-                "in-progress",
-                "completed",
-                "discontinued"
-              ]
+              "enum": ["in-progress", "completed", "discontinued"]
             },
             "required": false,
             "name": "status",
@@ -3762,12 +3433,7 @@
           {
             "schema": {
               "type": "string",
-              "enum": [
-                "poor",
-                "fair",
-                "good",
-                "excellent"
-              ]
+              "enum": ["poor", "fair", "good", "excellent"]
             },
             "required": false,
             "name": "progress",
@@ -3850,11 +3516,7 @@
                           },
                           "status": {
                             "type": "string",
-                            "enum": [
-                              "in-progress",
-                              "completed",
-                              "discontinued"
-                            ]
+                            "enum": ["in-progress", "completed", "discontinued"]
                           },
                           "skills": {
                             "type": "array",
@@ -3867,12 +3529,7 @@
                           },
                           "progress": {
                             "type": "string",
-                            "enum": [
-                              "poor",
-                              "fair",
-                              "good",
-                              "excellent"
-                            ]
+                            "enum": ["poor", "fair", "good", "excellent"]
                           },
                           "cost": {
                             "type": "number",
@@ -3929,18 +3586,10 @@
                           "type": "integer"
                         }
                       },
-                      "required": [
-                        "page",
-                        "limit",
-                        "total",
-                        "totalPages"
-                      ]
+                      "required": ["page", "limit", "total", "totalPages"]
                     }
                   },
-                  "required": [
-                    "data",
-                    "pagination"
-                  ]
+                  "required": ["data", "pagination"]
                 }
               }
             }
@@ -3992,11 +3641,7 @@
                   },
                   "status": {
                     "type": "string",
-                    "enum": [
-                      "in-progress",
-                      "completed",
-                      "discontinued"
-                    ]
+                    "enum": ["in-progress", "completed", "discontinued"]
                   },
                   "skills": {
                     "type": "array",
@@ -4009,12 +3654,7 @@
                   },
                   "progress": {
                     "type": "string",
-                    "enum": [
-                      "poor",
-                      "fair",
-                      "good",
-                      "excellent"
-                    ]
+                    "enum": ["poor", "fair", "good", "excellent"]
                   },
                   "cost": {
                     "type": "number",
@@ -4094,11 +3734,7 @@
                     },
                     "status": {
                       "type": "string",
-                      "enum": [
-                        "in-progress",
-                        "completed",
-                        "discontinued"
-                      ]
+                      "enum": ["in-progress", "completed", "discontinued"]
                     },
                     "skills": {
                       "type": "array",
@@ -4111,12 +3747,7 @@
                     },
                     "progress": {
                       "type": "string",
-                      "enum": [
-                        "poor",
-                        "fair",
-                        "good",
-                        "excellent"
-                      ]
+                      "enum": ["poor", "fair", "good", "excellent"]
                     },
                     "cost": {
                       "type": "number",
@@ -4176,10 +3807,7 @@
                       "nullable": true
                     }
                   },
-                  "required": [
-                    "error",
-                    "message"
-                  ]
+                  "required": ["error", "message"]
                 }
               }
             }
@@ -4201,10 +3829,7 @@
                       "nullable": true
                     }
                   },
-                  "required": [
-                    "error",
-                    "message"
-                  ]
+                  "required": ["error", "message"]
                 }
               }
             }
@@ -4275,11 +3900,7 @@
                     },
                     "status": {
                       "type": "string",
-                      "enum": [
-                        "in-progress",
-                        "completed",
-                        "discontinued"
-                      ]
+                      "enum": ["in-progress", "completed", "discontinued"]
                     },
                     "skills": {
                       "type": "array",
@@ -4292,12 +3913,7 @@
                     },
                     "progress": {
                       "type": "string",
-                      "enum": [
-                        "poor",
-                        "fair",
-                        "good",
-                        "excellent"
-                      ]
+                      "enum": ["poor", "fair", "good", "excellent"]
                     },
                     "cost": {
                       "type": "number",
@@ -4357,10 +3973,7 @@
                       "nullable": true
                     }
                   },
-                  "required": [
-                    "error",
-                    "message"
-                  ]
+                  "required": ["error", "message"]
                 }
               }
             }
@@ -4389,20 +4002,11 @@
                 "properties": {
                   "status": {
                     "type": "string",
-                    "enum": [
-                      "in-progress",
-                      "completed",
-                      "discontinued"
-                    ]
+                    "enum": ["in-progress", "completed", "discontinued"]
                   },
                   "progress": {
                     "type": "string",
-                    "enum": [
-                      "poor",
-                      "fair",
-                      "good",
-                      "excellent"
-                    ]
+                    "enum": ["poor", "fair", "good", "excellent"]
                   },
                   "endDate": {
                     "type": "string",
@@ -4482,11 +4086,7 @@
                     },
                     "status": {
                       "type": "string",
-                      "enum": [
-                        "in-progress",
-                        "completed",
-                        "discontinued"
-                      ]
+                      "enum": ["in-progress", "completed", "discontinued"]
                     },
                     "skills": {
                       "type": "array",
@@ -4499,12 +4099,7 @@
                     },
                     "progress": {
                       "type": "string",
-                      "enum": [
-                        "poor",
-                        "fair",
-                        "good",
-                        "excellent"
-                      ]
+                      "enum": ["poor", "fair", "good", "excellent"]
                     },
                     "cost": {
                       "type": "number",
@@ -4564,10 +4159,7 @@
                       "nullable": true
                     }
                   },
-                  "required": [
-                    "error",
-                    "message"
-                  ]
+                  "required": ["error", "message"]
                 }
               }
             }
@@ -4613,12 +4205,7 @@
                     },
                     "overallProgress": {
                       "type": "string",
-                      "enum": [
-                        "poor",
-                        "fair",
-                        "good",
-                        "excellent"
-                      ]
+                      "enum": ["poor", "fair", "good", "excellent"]
                     },
                     "skills": {
                       "type": "array",
@@ -4671,11 +4258,7 @@
                           },
                           "status": {
                             "type": "string",
-                            "enum": [
-                              "in-progress",
-                              "completed",
-                              "discontinued"
-                            ]
+                            "enum": ["in-progress", "completed", "discontinued"]
                           },
                           "skills": {
                             "type": "array",
@@ -4688,12 +4271,7 @@
                           },
                           "progress": {
                             "type": "string",
-                            "enum": [
-                              "poor",
-                              "fair",
-                              "good",
-                              "excellent"
-                            ]
+                            "enum": ["poor", "fair", "good", "excellent"]
                           },
                           "cost": {
                             "type": "number",
@@ -4765,10 +4343,7 @@
                       "nullable": true
                     }
                   },
-                  "required": [
-                    "error",
-                    "message"
-                  ]
+                  "required": ["error", "message"]
                 }
               }
             }
@@ -4810,12 +4385,7 @@
                           },
                           "averageProgress": {
                             "type": "string",
-                            "enum": [
-                              "poor",
-                              "fair",
-                              "good",
-                              "excellent"
-                            ]
+                            "enum": ["poor", "fair", "good", "excellent"]
                           }
                         },
                         "required": [
@@ -4827,9 +4397,7 @@
                       }
                     }
                   },
-                  "required": [
-                    "trainers"
-                  ]
+                  "required": ["trainers"]
                 }
               }
             }

@@ -1,6 +1,6 @@
 # 🐕 Dog API
 
-A comprehensive REST API for managing dogs, breeds, adoption, health records, and training data. Built with [Hono](https://hono.dev/) and full OpenAPI 3.0 support.
+A comprehensive REST API for managing dogs, broods, adoption, health records, and training data. Built with [Hono](https://hono.dev/) and full OpenAPI 3.0 support.
 
 ## 🚀 Quick Start
 
@@ -11,11 +11,12 @@ bun install
 # Start development server
 bun run dev
 
-# Start production server  
+# Start production server
 bun run start
 ```
 
 The API will be available at:
+
 - **API**: `http://localhost:3000`
 - **Swagger UI**: `http://localhost:3000/swagger`
 - **OpenAPI Schema**: `http://localhost:3000/openapi`
@@ -23,6 +24,7 @@ The API will be available at:
 ## 📋 API Endpoints
 
 ### Dogs (`/dogs`)
+
 - `GET /dogs` - List all dogs with filtering and pagination
 - `POST /dogs` - Create a new dog
 - `GET /dogs/{id}` - Get dog by ID
@@ -30,13 +32,15 @@ The API will be available at:
 - `DELETE /dogs/{id}` - Delete a dog
 - `GET /dogs/{id}/photos` - Get dog photos
 
-### Breeds (`/breeds`)
-- `GET /breeds` - List all dog breeds
-- `GET /breeds/{id}` - Get breed details
-- `GET /breeds/search` - Search breeds by name
-- `GET /breeds/groups` - Get breed groups
+### Broods (`/broods`)
+
+- `GET /broods` - List all dog broods
+- `GET /broods/{id}` - Get breed details
+- `GET /broods/search` - Search broods by name
+- `GET /broods/groups` - Get breed groups
 
 ### Adoption (`/adoption`)
+
 - `GET /adoption/applications` - List adoption applications
 - `POST /adoption/applications` - Submit adoption application
 - `GET /adoption/applications/{id}` - Get application details
@@ -45,6 +49,7 @@ The API will be available at:
 - `GET /adoption/stats` - Get adoption statistics
 
 ### Health (`/health`)
+
 - `GET /health/records` - List health records
 - `POST /health/records` - Create health record
 - `GET /health/records/{id}` - Get health record
@@ -52,6 +57,7 @@ The API will be available at:
 - `GET /health/veterinarians` - Get veterinarians list
 
 ### Training (`/training`)
+
 - `GET /training/records` - List training records
 - `POST /training/records` - Create training record
 - `GET /training/records/{id}` - Get training record
@@ -64,12 +70,14 @@ The API will be available at:
 This repository includes GitHub Actions workflows that automatically generate and update the OpenAPI schema on every push.
 
 ### Features:
+
 - **Automatic Generation**: Schema updates on code changes
 - **GitHub Releases**: Tagged releases with schema artifacts
 - **PR Comments**: Schema info in pull request comments
 - **Webhook Support**: External trigger via repository dispatch
 
 ### Manual Generation:
+
 ```bash
 # Generate OpenAPI schema locally
 bun run generate:openapi
@@ -79,6 +87,7 @@ bun run scripts/generate-openapi-ci.ts
 ```
 
 ### Webhook Trigger:
+
 ```bash
 # Trigger via GitHub API
 curl -X POST \
@@ -91,11 +100,12 @@ curl -X POST \
 ## 🛠️ Development
 
 ### Project Structure:
+
 ```
 src/
 ├── routes/          # API route handlers
 │   ├── dogs.ts
-│   ├── breeds.ts
+│   ├── broods.ts
 │   ├── adoption.ts
 │   ├── health.ts
 │   └── training.ts
@@ -108,6 +118,7 @@ scripts/            # Build and generation scripts
 ```
 
 ### Adding New Endpoints:
+
 1. Define schemas in `src/schemas/index.ts`
 2. Create route handlers in `src/routes/`
 3. Import and mount routes in `index.ts`
@@ -122,6 +133,7 @@ scripts/            # Build and generation scripts
 ## 🏷️ Use Cases
 
 This API is perfect for:
+
 - **Postman Collection Testing**: Comprehensive endpoints for agent testing
 - **OpenAPI Workflow Development**: Automated schema generation examples
 - **Pet Management Systems**: Real-world data models and operations
