@@ -3,7 +3,7 @@
   "info": {
     "version": "1.0.0",
     "title": "Dog API",
-    "description": "A comprehensive API for managing dogs, broods, adoption, health records, and training data"
+    "description": "A comprehensive API for managing dogs, breeds, adoption, health records, and training data"
   },
   "components": {
     "schemas": {},
@@ -952,11 +952,11 @@
         }
       }
     },
-    "/broods": {
+    "/breeds": {
       "get": {
-        "tags": ["Broods"],
-        "summary": "List all dog broods",
-        "description": "Retrieve a list of all available dog broods with their characteristics",
+        "tags": ["Breeds"],
+        "summary": "List all dog breeds",
+        "description": "Retrieve a list of all available dog breeds with their characteristics",
         "parameters": [
           {
             "schema": {
@@ -1015,7 +1015,7 @@
         ],
         "responses": {
           "200": {
-            "description": "List of dog broods",
+            "description": "List of dog breeds",
             "content": {
               "application/json": {
                 "schema": {
@@ -1137,9 +1137,9 @@
         }
       }
     },
-    "/broods/{id}": {
+    "/breeds/{id}": {
       "get": {
-        "tags": ["Broods"],
+        "tags": ["Breeds"],
         "summary": "Get breed by ID",
         "description": "Retrieve detailed information about a specific dog breed",
         "parameters": [
@@ -1296,11 +1296,11 @@
         }
       }
     },
-    "/broods/search": {
+    "/breeds/search": {
       "get": {
-        "tags": ["Broods"],
-        "summary": "Search broods by name",
-        "description": "Search for dog broods by name or partial name match",
+        "tags": ["Breeds"],
+        "summary": "Search breeds by name",
+        "description": "Search for dog breeds by name or partial name match",
         "parameters": [
           {
             "schema": {
@@ -1327,7 +1327,7 @@
         ],
         "responses": {
           "200": {
-            "description": "Matching broods",
+            "description": "Matching breeds",
             "content": {
               "application/json": {
                 "schema": {
@@ -1449,9 +1449,9 @@
         }
       }
     },
-    "/broods/groups": {
+    "/breeds/groups": {
       "get": {
-        "tags": ["Broods"],
+        "tags": ["Breeds"],
         "summary": "Get all breed groups",
         "description": "Retrieve a list of all available dog breed groups",
         "responses": {
