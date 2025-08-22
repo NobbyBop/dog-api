@@ -4,7 +4,7 @@ import { cors } from "hono/cors";
 
 // Import route modules
 import { dogsRoutes } from "./src/routes/dogs";
-import { breedsRoutes } from "./src/routes/breeds";
+import { broodsRoutes } from "./src/routes/broods";
 import { adoptionRoutes } from "./src/routes/adoption";
 import { healthRoutes } from "./src/routes/health";
 import { trainingRoutes } from "./src/routes/training";
@@ -49,7 +49,7 @@ app.openapi(
 
 // Route groups
 app.route("/dogs", dogsRoutes);
-app.route("/breeds", breedsRoutes);
+app.route("/broods", broodsRoutes);
 app.route("/adoption", adoptionRoutes);
 app.route("/health", healthRoutes);
 app.route("/training", trainingRoutes);
@@ -61,7 +61,7 @@ app.doc("/openapi", {
     version: "1.0.0",
     title: "Dog API",
     description:
-      "A comprehensive API for managing dogs, breeds, adoption, health records, and training data",
+      "A comprehensive API for managing dogs, broods, adoption, health records, and training data",
   },
 });
 

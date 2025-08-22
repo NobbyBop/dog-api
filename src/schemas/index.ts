@@ -28,7 +28,7 @@ export const CreateDogSchema = DogSchema.omit({
 export const UpdateDogSchema = CreateDogSchema.partial();
 
 // Breed schema
-export const Breedschema = z.object({
+export const Broodschema = z.object({
   id: z.string().uuid(),
   name: z.string().min(1).max(100),
   group: z.enum([
@@ -203,7 +203,7 @@ export const DogQuerySchema = z.object({
 export type Dog = z.infer<typeof DogSchema>;
 export type CreateDog = z.infer<typeof CreateDogSchema>;
 export type UpdateDog = z.infer<typeof UpdateDogSchema>;
-export type Breed = z.infer<typeof Breedschema>;
+export type Breed = z.infer<typeof Broodschema>;
 export type AdoptionApplication = z.infer<typeof AdoptionApplicationSchema>;
 export type CreateAdoptionApplication = z.infer<
   typeof CreateAdoptionApplicationSchema
