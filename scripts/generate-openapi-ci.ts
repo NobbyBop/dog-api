@@ -48,13 +48,13 @@ async function generateOpenAPIForCI() {
 
     // Import and mount route modules
     const { dogsRoutes } = await import("../src/routes/dogs");
-    const { broodsRoutes } = await import("../src/routes/broods");
+    const { breedsRoutes } = await import("../src/routes/breeds");
     const { adoptionRoutes } = await import("../src/routes/adoption");
     const { healthRoutes } = await import("../src/routes/health");
     const { trainingRoutes } = await import("../src/routes/training");
 
     app.route("/dogs", dogsRoutes);
-    app.route("/broods", broodsRoutes);
+    app.route("/breeds", breedsRoutes);
     app.route("/adoption", adoptionRoutes);
     app.route("/health", healthRoutes);
     app.route("/training", trainingRoutes);
@@ -66,7 +66,7 @@ async function generateOpenAPIForCI() {
         version: "1.0.0",
         title: "Dog API",
         description:
-          "A comprehensive API for managing dogs, broods, adoption, health records, and training data",
+          "A comprehensive API for managing dogs, breeds, adoption, health records, and training data",
       },
     });
 

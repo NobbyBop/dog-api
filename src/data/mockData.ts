@@ -123,8 +123,8 @@ export const mockDogs: Dog[] = [
   },
 ];
 
-// Mock Broods Data
-export const mockBroods: Breed[] = [
+// Mock Breeds Data
+export const mockBreeds: Breed[] = [
   {
     id: uuidv4(),
     name: "Golden Retriever",
@@ -140,7 +140,7 @@ export const mockBroods: Breed[] = [
     goodWithPets: true,
     description:
       "Golden Retrievers are friendly, intelligent dogs that are devoted to their families. They were originally bred to retrieve waterfowl for hunters.",
-    image: "https://example.com/broods/golden-retriever.jpg",
+    image: "https://example.com/breeds/golden-retriever.jpg",
     createdAt: randomDate(new Date(2023, 0, 1), new Date()),
     updatedAt: randomDate(new Date(2023, 0, 1), new Date()),
   },
@@ -159,7 +159,7 @@ export const mockBroods: Breed[] = [
     goodWithPets: true,
     description:
       "Border Collies are extremely intelligent and energetic dogs that excel at herding and agility sports.",
-    image: "https://example.com/broods/border-collie.jpg",
+    image: "https://example.com/breeds/border-collie.jpg",
     createdAt: randomDate(new Date(2023, 0, 1), new Date()),
     updatedAt: randomDate(new Date(2023, 0, 1), new Date()),
   },
@@ -178,7 +178,7 @@ export const mockBroods: Breed[] = [
     goodWithPets: false,
     description:
       "German Shepherds are large, athletic dogs known for their loyalty, courage, and versatility as working dogs.",
-    image: "https://example.com/broods/german-shepherd.jpg",
+    image: "https://example.com/breeds/german-shepherd.jpg",
     createdAt: randomDate(new Date(2023, 0, 1), new Date()),
     updatedAt: randomDate(new Date(2023, 0, 1), new Date()),
   },
@@ -197,7 +197,7 @@ export const mockBroods: Breed[] = [
     goodWithPets: true,
     description:
       "French Bulldogs are small, muscular dogs with a calm nature and require minimal exercise, making them excellent city dogs.",
-    image: "https://example.com/broods/french-bulldog.jpg",
+    image: "https://example.com/breeds/french-bulldog.jpg",
     createdAt: randomDate(new Date(2023, 0, 1), new Date()),
     updatedAt: randomDate(new Date(2023, 0, 1), new Date()),
   },

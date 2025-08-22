@@ -1,18 +1,18 @@
 import { OpenAPIHono, createRoute } from "@hono/zod-openapi";
 import { z } from "zod";
-import { Broodschema, ErrorSchema } from "../schemas";
-import { mockBroods, findById } from "../data/mockData";
+import { Breedschema, ErrorSchema } from "../schemas";
+import { mockBreeds, findById } from "../data/mockData";
 
-export const broodsRoutes = new OpenAPIHono();
+export const breedsRoutes = new OpenAPIHono();
 
-// GET /broods - List all broods
-const listBroodsRoute = createRoute({
+// GET /breeds - List all breeds
+const listBreedsRoute = createRoute({
   method: "get",
   path: "/",
-  tags: ["Broods"],
-  summary: "List all dog broods",
+  tags: ["Breeds"],
+  summary: "List all dog breeds",
   description:
-    "Retrieve a list of all available dog broods with their characteristics",
+    "Retrieve a list of all available dog breeds with their characteristics",
   request: {
     query: z.object({
       group: z
@@ -39,52 +39,52 @@ const listBroodsRoute = createRoute({
     200: {
       content: {
         "application/json": {
-          schema: z.array(Broodschema),
+          schema: z.array(Breedschema),
         },
       },
-      description: "List of dog broods",
+      description: "List of dog breeds",
     },
   },
 });
 
-broodsRoutes.openapi(listBroodsRoute, (c) => {
+breedsRoutes.openapi(listBreedsRoute, (c) => {
   const query = c.req.valid("query");
-  let filteredBroods = mockBroods;
+  let filteredBreeds = mockBreeds;
 
   if (query.group) {
-    filteredBroods = filteredBroods.filter(
+    filteredBreeds = filteredBreeds.filter(
       (breed) => breed.group === query.group
     );
   }
   if (query.size) {
-    filteredBroods = filteredBroods.filter(
+    filteredBreeds = filteredBreeds.filter(
       (breed) => breed.size === query.size
     );
   }
   if (query.exerciseNeeds) {
-    filteredBroods = filteredBroods.filter(
+    filteredBreeds = filteredBreeds.filter(
       (breed) => breed.exerciseNeeds === query.exerciseNeeds
     );
   }
   if (query.goodWithKids !== undefined) {
-    filteredBroods = filteredBroods.filter(
+    filteredBreeds = filteredBreeds.filter(
       (breed) => breed.goodWithKids === query.goodWithKids
     );
   }
   if (query.goodWithPets !== undefined) {
-    filteredBroods = filteredBroods.filter(
+    filteredBreeds = filteredBreeds.filter(
       (breed) => breed.goodWithPets === query.goodWithPets
     );
   }
 
-  return c.json(filteredBroods);
+  return c.json(filteredBreeds);
 });
 
-// GET /broods/:id - Get specific breed
+// GET /breeds/:id - Get specific breed
 const getBreedRoute = createRoute({
   method: "get",
   path: "/{id}",
-  tags: ["Broods"],
+  tags: ["Breeds"],
   summary: "Get breed by ID",
   description: "Retrieve detailed information about a specific dog breed",
   request: {
@@ -96,7 +96,7 @@ const getBreedRoute = createRoute({
     200: {
       content: {
         "application/json": {
-          schema: Broodschema,
+          schema: Breedschema,
         },
       },
       description: "Breed details",
@@ -112,9 +112,9 @@ const getBreedRoute = createRoute({
   },
 });
 
-broodsRoutes.openapi(getBreedRoute, (c) => {
+breedsRoutes.openapi(getBreedRoute, (c) => {
   const { id } = c.req.valid("param");
-  const breed = findById(mockBroods, id);
+  const breed = findById(mockBreeds, id);
 
   if (!breed) {
     return c.json(
@@ -129,13 +129,13 @@ broodsRoutes.openapi(getBreedRoute, (c) => {
   return c.json(breed);
 });
 
-// GET /broods/search - Search broods by name
-const searchBroodsRoute = createRoute({
+// GET /breeds/search - Search breeds by name
+const searchBreedsRoute = createRoute({
   method: "get",
   path: "/search",
-  tags: ["Broods"],
-  summary: "Search broods by name",
-  description: "Search for dog broods by name or partial name match",
+  tags: ["Breeds"],
+  summary: "Search breeds by name",
+  description: "Search for dog breeds by name or partial name match",
   request: {
     query: z.object({
       q: z.string().min(1).max(100),
@@ -146,29 +146,29 @@ const searchBroodsRoute = createRoute({
     200: {
       content: {
         "application/json": {
-          schema: z.array(Broodschema),
+          schema: z.array(Breedschema),
         },
       },
-      description: "Matching broods",
+      description: "Matching breeds",
     },
   },
 });
 
-broodsRoutes.openapi(searchBroodsRoute, (c) => {
+breedsRoutes.openapi(searchBreedsRoute, (c) => {
   const { q, limit } = c.req.valid("query");
 
-  const matchingBroods = mockBroods
+  const matchingBreeds = mockBreeds
     .filter((breed) => breed.name.toLowerCase().includes(q.toLowerCase()))
     .slice(0, limit);
 
-  return c.json(matchingBroods);
+  return c.json(matchingBreeds);
 });
 
-// GET /broods/groups - Get all breed groups
+// GET /breeds/groups - Get all breed groups
 const getBreedGroupsRoute = createRoute({
   method: "get",
   path: "/groups",
-  tags: ["Broods"],
+  tags: ["Breeds"],
   summary: "Get all breed groups",
   description: "Retrieve a list of all available dog breed groups",
   responses: {
@@ -191,8 +191,8 @@ const getBreedGroupsRoute = createRoute({
   },
 });
 
-broodsRoutes.openapi(getBreedGroupsRoute, (c) => {
-  const groupCounts = mockBroods.reduce((acc, breed) => {
+breedsRoutes.openapi(getBreedGroupsRoute, (c) => {
+  const groupCounts = mockBreeds.reduce((acc, breed) => {
     acc[breed.group] = (acc[breed.group] || 0) + 1;
     return acc;
   }, {} as Record<string, number>);
