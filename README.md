@@ -1,6 +1,6 @@
 # 🐕 Dog API
 
-A comprehensive REST API for managing dogs, breeds, adoption, health records, and training data. Built with [Hono](https://hono.dev/) and full OpenAPI 3.0 support.
+A comprehensive REST API for managing dogs, broods, adoption, health records, and training data. Built with [Hono](https://hono.dev/) and full OpenAPI 3.0 support.
 
 ## 🚀 Quick Start
 
@@ -32,12 +32,12 @@ The API will be available at:
 - `DELETE /dogs/{id}` - Delete a dog
 - `GET /dogs/{id}/photos` - Get dog photos
 
-### Breeds (`/breeds`)
+### Broods (`/broods`)
 
-- `GET /breeds` - List all dog breeds
-- `GET /breeds/{id}` - Get breed details
-- `GET /breeds/search` - Search breeds by name
-- `GET /breeds/groups` - Get breed groups
+- `GET /broods` - List all dog broods
+- `GET /broods/{id}` - Get breed details
+- `GET /broods/search` - Search broods by name
+- `GET /broods/groups` - Get breed groups
 
 ### Adoption (`/adoption`)
 
@@ -105,7 +105,7 @@ curl -X POST \
 src/
 ├── routes/          # API route handlers
 │   ├── dogs.ts
-│   ├── breeds.ts
+│   ├── broods.ts
 │   ├── adoption.ts
 │   ├── health.ts
 │   └── training.ts
